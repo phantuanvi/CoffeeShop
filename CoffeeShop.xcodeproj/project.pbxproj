@@ -20,6 +20,8 @@
 		0C78AAC91FA4DAF700940B11 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C78AAC71FA4DAF600940B11 /* Extensions.swift */; };
 		0C78AACE1FA4E91F00940B11 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C78AACD1FA4E91F00940B11 /* SignUpView.swift */; };
 		0C78AAD01FA4E94900940B11 /* SignUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C78AACF1FA4E94900940B11 /* SignUpVC.swift */; };
+		0C78AAD31FA4EB8E00940B11 /* SignInVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C78AAD21FA4EB8E00940B11 /* SignInVC.swift */; };
+		0C78AAD51FA4EBA700940B11 /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C78AAD41FA4EBA700940B11 /* SignInView.swift */; };
 		13F511ABC424CA1045041081 /* Pods_CoffeeShop.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15294FB2A44F7A7FC1BCCFAD /* Pods_CoffeeShop.framework */; };
 		35251C3AC9BBEC8941CEB6D8 /* Pods_CoffeeShopUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7875EB04B9BF33810F583102 /* Pods_CoffeeShopUITests.framework */; };
 		8C2D131B69D2813DB37A7076 /* Pods_CoffeeShopTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AF24C37268F41C839FE0FD9B /* Pods_CoffeeShopTests.framework */; };
@@ -60,6 +62,8 @@
 		0C78AAC71FA4DAF600940B11 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		0C78AACD1FA4E91F00940B11 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 		0C78AACF1FA4E94900940B11 /* SignUpVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpVC.swift; sourceTree = "<group>"; };
+		0C78AAD21FA4EB8E00940B11 /* SignInVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInVC.swift; sourceTree = "<group>"; };
+		0C78AAD41FA4EBA700940B11 /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
 		0D6CDD904B3BAC86750C43EA /* Pods-CoffeeShopUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CoffeeShopUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CoffeeShopUITests/Pods-CoffeeShopUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		15294FB2A44F7A7FC1BCCFAD /* Pods_CoffeeShop.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CoffeeShop.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2A1C5B3D824E20FB8713E6EA /* Pods-CoffeeShop.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CoffeeShop.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CoffeeShop/Pods-CoffeeShop.debug.xcconfig"; sourceTree = "<group>"; };
@@ -122,6 +126,7 @@
 		0C78AA891FA4D46400940B11 /* CoffeeShop */ = {
 			isa = PBXGroup;
 			children = (
+				0C78AAD11FA4EB6E00940B11 /* SignInVC */,
 				0C78AACC1FA4E8F200940B11 /* SignUpVC */,
 				0C78AAB81FA4D9CB00940B11 /* Support */,
 				0C78AABD1FA4DA5400940B11 /* WelcomeVC */,
@@ -162,6 +167,15 @@
 				0C78AACD1FA4E91F00940B11 /* SignUpView.swift */,
 			);
 			path = SignUpVC;
+			sourceTree = "<group>";
+		};
+		0C78AAD11FA4EB6E00940B11 /* SignInVC */ = {
+			isa = PBXGroup;
+			children = (
+				0C78AAD21FA4EB8E00940B11 /* SignInVC.swift */,
+				0C78AAD41FA4EBA700940B11 /* SignInView.swift */,
+			);
+			path = SignInVC;
 			sourceTree = "<group>";
 		};
 		45B0668585D808EACB47E321 /* Pods */ = {
@@ -479,8 +493,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0C78AAD51FA4EBA700940B11 /* SignInView.swift in Sources */,
 				0C78AAD01FA4E94900940B11 /* SignUpVC.swift in Sources */,
 				0C78AAC91FA4DAF700940B11 /* Extensions.swift in Sources */,
+				0C78AAD31FA4EB8E00940B11 /* SignInVC.swift in Sources */,
 				0C78AAC31FA4DAA100940B11 /* WelcomeVC.swift in Sources */,
 				0C78AAC81FA4DAF700940B11 /* Color.swift in Sources */,
 				0C78AA8B1FA4D46400940B11 /* AppDelegate.swift in Sources */,

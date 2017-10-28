@@ -36,5 +36,7 @@ class WelcomeVC: UIViewController {
     
     func skipTapped() {
         print("skipTapped")
+        let signInVC = SignInVC()
+        present(signInVC, animated: true, completion: nil)
     }
 }
