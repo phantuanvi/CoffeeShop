@@ -139,6 +139,8 @@ playground.xcworkspace
 ## Various settings
 
 ## Other
+CoffeeShopTests/
+CoffeeShopUITests/
 
 ### Xcode Patch ###
 *.xcodeproj/*
