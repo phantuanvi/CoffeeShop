@@ -153,3 +153,23 @@ extension UIImageView {
         self.image = image
     }
 }
+
+extension UIViewController {
+    func setNavigationBarItem() {
+        navigationController?.navigationBar.barStyle = UIBarStyle.blackTranslucent
+        navigationController?.navigationBar.tintColor = UIColor.white
+        navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor:UIColor.white]
+        self.addLeftBarButtonWithImage(UIImage(named: "menuIcon")!)
+        self.slideMenuController()?.removeLeftGestures()
+        self.slideMenuController()?.addLeftGestures()
+    }
+}
+
+extension UINavigationBar {
+    
+    func transparentNavigationBar() {
+        self.setBackgroundImage(UIImage(), for: .default)
+        self.shadowImage = UIImage()
+        self.isTranslucent = true
+    }
+}

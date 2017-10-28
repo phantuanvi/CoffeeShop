@@ -33,6 +33,14 @@ class SignInVC: UIViewController {
     
     func signInTapped(){
         print("signInTapped")
+        
+        let menuVC:MenuVC = MenuVC()
+        let sideBarVC:SideBarVC = SideBarVC()
+        let navigationController:UINavigationController = UINavigationController(rootViewController: menuVC)
+        sideBarVC.menuVC = navigationController
+        let slideMenuController = SlideMenuController(mainViewController: navigationController, leftMenuViewController: sideBarVC)
+        slideMenuController.delegate = menuVC
+        present(slideMenuController, animated: true, completion: nil)
     }
 }
 
