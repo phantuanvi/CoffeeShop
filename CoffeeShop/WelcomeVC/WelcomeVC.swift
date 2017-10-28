@@ -30,6 +30,8 @@ class WelcomeVC: UIViewController {
     
     func signUpTapped(){
         print("signUpTapped")
+        let signUpVC = SignUpVC()
+        present(signUpVC, animated: true, completion: nil)
     }
     
     func skipTapped() {
