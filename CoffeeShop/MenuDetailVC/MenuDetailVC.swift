@@ -28,13 +28,6 @@ class MenuDetailVC: UIViewController {
         super.viewDidLoad()
         
         navigationItem.title = titleNav
-        self.setNavigationBarItem()
-        navigationController?.hidesBarsOnSwipe = true
-        navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor:WHITE]
-        navigationController?.setNavigationBarHidden(false, animated: true)
-        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
-        navigationController?.navigationBar.shadowImage = UIImage()
-        navigationController?.navigationBar.isTranslucent = true
         
         leftBarButtonItem()
         
@@ -53,6 +46,18 @@ class MenuDetailVC: UIViewController {
         updateHeaderView()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        
+        navigationController?.hidesBarsOnSwipe = true
+        navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor:WHITE]
+        navigationController?.setNavigationBarHidden(false, animated: true)
+        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
+        navigationController?.navigationBar.shadowImage = UIImage()
+        navigationController?.navigationBar.isTranslucent = true
+        navigationController?.navigationBar.tintColor = UIColor.white
+        setStatusBarColor(UIBarStyle.blackTranslucent)
+    }
+    
     // Left Bar Button Item
     func leftBarButtonItem() {
         
@@ -66,7 +71,7 @@ class MenuDetailVC: UIViewController {
     }
     
     @objc func leftButtonTapped(){
-        self.navigationController?.popToRootViewController(animated: true)
+        navigationController?.popViewController(animated: true)
     }
     
     // Enable the navbar scrolling

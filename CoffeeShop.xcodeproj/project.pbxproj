@@ -43,6 +43,9 @@
 		0C88FC621FA5989A00B16394 /* MenuDetailTableHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C88FC611FA5989A00B16394 /* MenuDetailTableHeaderView.swift */; };
 		0C88FC651FA5AF9F00B16394 /* ProductDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C88FC641FA5AF9F00B16394 /* ProductDetailView.swift */; };
 		0C88FC671FA5AFB600B16394 /* ProductDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C88FC661FA5AFB600B16394 /* ProductDetailVC.swift */; };
+		0C88FC6A1FA5C0A900B16394 /* OrderSummaryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C88FC691FA5C0A900B16394 /* OrderSummaryVC.swift */; };
+		0C88FC6C1FA5C0CC00B16394 /* OrderSummaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C88FC6B1FA5C0CC00B16394 /* OrderSummaryView.swift */; };
+		0C88FC6E1FA5C0F900B16394 /* OrderSummaryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C88FC6D1FA5C0F900B16394 /* OrderSummaryTableViewCell.swift */; };
 		13F511ABC424CA1045041081 /* Pods_CoffeeShop.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15294FB2A44F7A7FC1BCCFAD /* Pods_CoffeeShop.framework */; };
 /* End PBXBuildFile section */
 
@@ -100,6 +103,9 @@
 		0C88FC611FA5989A00B16394 /* MenuDetailTableHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuDetailTableHeaderView.swift; sourceTree = "<group>"; };
 		0C88FC641FA5AF9F00B16394 /* ProductDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailView.swift; sourceTree = "<group>"; };
 		0C88FC661FA5AFB600B16394 /* ProductDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailVC.swift; sourceTree = "<group>"; };
+		0C88FC691FA5C0A900B16394 /* OrderSummaryVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderSummaryVC.swift; sourceTree = "<group>"; };
+		0C88FC6B1FA5C0CC00B16394 /* OrderSummaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderSummaryView.swift; sourceTree = "<group>"; };
+		0C88FC6D1FA5C0F900B16394 /* OrderSummaryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderSummaryTableViewCell.swift; sourceTree = "<group>"; };
 		15294FB2A44F7A7FC1BCCFAD /* Pods_CoffeeShop.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CoffeeShop.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2A1C5B3D824E20FB8713E6EA /* Pods-CoffeeShop.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CoffeeShop.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CoffeeShop/Pods-CoffeeShop.debug.xcconfig"; sourceTree = "<group>"; };
 		2B7DB005AA651FE12E580456 /* Pods-CoffeeShop.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CoffeeShop.release.xcconfig"; path = "Pods/Target Support Files/Pods-CoffeeShop/Pods-CoffeeShop.release.xcconfig"; sourceTree = "<group>"; };
@@ -156,6 +162,7 @@
 		0C78AA891FA4D46400940B11 /* CoffeeShop */ = {
 			isa = PBXGroup;
 			children = (
+				0C88FC681FA5C07500B16394 /* OrderSummaryVC */,
 				0C88FC631FA5AF7F00B16394 /* ProductDetailVC */,
 				0C78AAF11FA5017000940B11 /* MenuDetailVC */,
 				0C78AAE61FA4F95000940B11 /* SettingsVC */,
@@ -279,6 +286,16 @@
 				0C88FC661FA5AFB600B16394 /* ProductDetailVC.swift */,
 			);
 			path = ProductDetailVC;
+			sourceTree = "<group>";
+		};
+		0C88FC681FA5C07500B16394 /* OrderSummaryVC */ = {
+			isa = PBXGroup;
+			children = (
+				0C88FC691FA5C0A900B16394 /* OrderSummaryVC.swift */,
+				0C88FC6B1FA5C0CC00B16394 /* OrderSummaryView.swift */,
+				0C88FC6D1FA5C0F900B16394 /* OrderSummaryTableViewCell.swift */,
+			);
+			path = OrderSummaryVC;
 			sourceTree = "<group>";
 		};
 		45B0668585D808EACB47E321 /* Pods */ = {
@@ -510,6 +527,7 @@
 				0C88FC671FA5AFB600B16394 /* ProductDetailVC.swift in Sources */,
 				0C223A281FA586F800EDBBCE /* MenuDetailView.swift in Sources */,
 				0C78AAC81FA4DAF700940B11 /* Color.swift in Sources */,
+				0C88FC6A1FA5C0A900B16394 /* OrderSummaryVC.swift in Sources */,
 				0C78AAF31FA501BF00940B11 /* MenuDetailVC.swift in Sources */,
 				0C88FC621FA5989A00B16394 /* MenuDetailTableHeaderView.swift in Sources */,
 				0C78AAD71FA4EEFB00940B11 /* SlideMenuController.swift in Sources */,
@@ -521,6 +539,8 @@
 				0C88FC651FA5AF9F00B16394 /* ProductDetailView.swift in Sources */,
 				0C78AAE31FA4F0CE00940B11 /* MenuTableViewCell.swift in Sources */,
 				0C78AAEC1FA4F9A000940B11 /* SettingsVC.swift in Sources */,
+				0C88FC6C1FA5C0CC00B16394 /* OrderSummaryView.swift in Sources */,
+				0C88FC6E1FA5C0F900B16394 /* OrderSummaryTableViewCell.swift in Sources */,
 				0C78AAEE1FA4FABC00940B11 /* FavoritesView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

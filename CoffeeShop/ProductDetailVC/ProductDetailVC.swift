@@ -17,6 +17,8 @@ class ProductDetailVC: UIViewController {
     
     func placeOrderTapped() {
         print("placeOrderTapped")
+        let orderSummaryVC = OrderSummaryVC()
+        navigationController?.pushViewController(orderSummaryVC, animated: true)
     }
     
     func addToFavoriteTapped() {
@@ -36,7 +38,7 @@ class ProductDetailVC: UIViewController {
     }
     
     @objc func leftButtonTapped(){
-        self.navigationController?.popToRootViewController(animated: true)
+        self.navigationController?.popViewController(animated: true)
     }
     
     // Right Bar Button Item
@@ -79,6 +81,7 @@ class ProductDetailVC: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        navigationController?.isNavigationBarHidden = false
         setStatusBarColor(UIBarStyle.default)
     }
 }
