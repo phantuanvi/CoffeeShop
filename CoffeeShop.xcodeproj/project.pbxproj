@@ -34,7 +34,6 @@
 		0C78AAE11FA4F0B600940B11 /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C78AAE01FA4F0B600940B11 /* MenuView.swift */; };
 		0C78AAE31FA4F0CE00940B11 /* MenuTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C78AAE21FA4F0CE00940B11 /* MenuTableViewCell.swift */; };
 		0C78AAE81FA4F97200940B11 /* FavoritesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C78AAE71FA4F97200940B11 /* FavoritesVC.swift */; };
-		0C78AAEA1FA4F98B00940B11 /* ProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C78AAE91FA4F98B00940B11 /* ProfileVC.swift */; };
 		0C78AAEC1FA4F9A000940B11 /* SettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C78AAEB1FA4F9A000940B11 /* SettingsVC.swift */; };
 		0C78AAEE1FA4FABC00940B11 /* FavoritesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C78AAED1FA4FABC00940B11 /* FavoritesView.swift */; };
 		0C78AAF01FA4FB2A00940B11 /* FavoriteCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C78AAEF1FA4FB2A00940B11 /* FavoriteCollectionViewCell.swift */; };
@@ -94,7 +93,6 @@
 		0C78AAE01FA4F0B600940B11 /* MenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
 		0C78AAE21FA4F0CE00940B11 /* MenuTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuTableViewCell.swift; sourceTree = "<group>"; };
 		0C78AAE71FA4F97200940B11 /* FavoritesVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesVC.swift; sourceTree = "<group>"; };
-		0C78AAE91FA4F98B00940B11 /* ProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileVC.swift; sourceTree = "<group>"; };
 		0C78AAEB1FA4F9A000940B11 /* SettingsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsVC.swift; sourceTree = "<group>"; };
 		0C78AAED1FA4FABC00940B11 /* FavoritesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesView.swift; sourceTree = "<group>"; };
 		0C78AAEF1FA4FB2A00940B11 /* FavoriteCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -166,7 +164,6 @@
 				0C88FC631FA5AF7F00B16394 /* ProductDetailVC */,
 				0C78AAF11FA5017000940B11 /* MenuDetailVC */,
 				0C78AAE61FA4F95000940B11 /* SettingsVC */,
-				0C78AAE51FA4F94400940B11 /* ProfileVC */,
 				0C78AAE41FA4F93700940B11 /* FavoritesVC */,
 				0C78AADD1FA4F08500940B11 /* MenuVC */,
 				0C78AAD81FA4EF8200940B11 /* SideBarVC */,
@@ -250,14 +247,6 @@
 				0C78AAED1FA4FABC00940B11 /* FavoritesView.swift */,
 			);
 			path = FavoritesVC;
-			sourceTree = "<group>";
-		};
-		0C78AAE51FA4F94400940B11 /* ProfileVC */ = {
-			isa = PBXGroup;
-			children = (
-				0C78AAE91FA4F98B00940B11 /* ProfileVC.swift */,
-			);
-			path = ProfileVC;
 			sourceTree = "<group>";
 		};
 		0C78AAE61FA4F95000940B11 /* SettingsVC */ = {
@@ -460,11 +449,13 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-CoffeeShop/Pods-CoffeeShop-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/QuickTableViewController/QuickTableViewController.framework",
 				"${BUILT_PRODUCTS_DIR}/SteviaLayout/Stevia.framework",
 				"${BUILT_PRODUCTS_DIR}/ZHDropDownMenu/ZHDropDownMenu.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/QuickTableViewController.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Stevia.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ZHDropDownMenu.framework",
 			);
@@ -532,7 +523,6 @@
 				0C88FC621FA5989A00B16394 /* MenuDetailTableHeaderView.swift in Sources */,
 				0C78AAD71FA4EEFB00940B11 /* SlideMenuController.swift in Sources */,
 				0C78AA8B1FA4D46400940B11 /* AppDelegate.swift in Sources */,
-				0C78AAEA1FA4F98B00940B11 /* ProfileVC.swift in Sources */,
 				0C78AACE1FA4E91F00940B11 /* SignUpView.swift in Sources */,
 				0C78AAF51FA501E900940B11 /* MenuDetailTableViewCell.swift in Sources */,
 				0C78AABF1FA4DA7E00940B11 /* WelcomeView.swift in Sources */,

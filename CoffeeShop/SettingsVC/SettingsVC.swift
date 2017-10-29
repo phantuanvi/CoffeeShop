@@ -7,29 +7,42 @@
 //
 
 import UIKit
+import QuickTableViewController
 
-class SettingsVC: UIViewController {
+class SettingsVC: QuickTableViewController {
 
+    var titleNav: String = "Settings"
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        navigationItem.title = titleNav
+        self.setNavigationBarItem()
+        
+        tableContents = [
+            Section(title: "INFO", rows: [
+                NavigationRow(title: "Name", subtitle: .rightAligned("TuanVi")),
+                NavigationRow(title: "Title", subtitle: .rightAligned("developer")),
+                NavigationRow(title: "Bio", subtitle: .rightAligned("I'm from Danang"))
+            ]),
+            Section(title: "ACCOUNT", rows: [
+                NavigationRow(title: "Email", subtitle: .rightAligned("dev@phantuanvi.com")),
+                NavigationRow(title: "Location", subtitle: .rightAligned("Danang"))
+            ]),
+            Section(title: "CONNECT", rows: [
+                SwitchRow<SwitchCell>(title: "Facebook", switchValue: true, action: { _ in
+                    print("Facebook switch")
+                    
+                }),
+                SwitchRow<SwitchCell>(title: "Google", switchValue: true, action: { _ in
+                    print("Google switch")
+                })
+            ])
+        ]
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    override func viewWillAppear(_ animated: Bool) {
+        setStatusBarColor(UIBarStyle.blackTranslucent)
     }
-    */
 
 }

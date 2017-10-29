@@ -68,9 +68,6 @@ class ProductDetailVC: UIViewController {
         view.backgroundColor = WHITE
         
         navigationItem.title = "ChocoLate Muffin"
-        navigationController?.hidesBarsOnSwipe = false
-        navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor:UIColor.gray]
-        navigationController?.navigationBar.isTranslucent = true
         
         leftBarButtonItem()
         rightBarButtonItem()
@@ -82,6 +79,9 @@ class ProductDetailVC: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         navigationController?.isNavigationBarHidden = false
+        navigationController?.hidesBarsOnSwipe = false
+        navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor:UIColor.gray]
+        navigationController?.navigationBar.isTranslucent = true
         setStatusBarColor(UIBarStyle.default)
     }
 }

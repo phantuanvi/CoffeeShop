@@ -8,5 +8,6 @@ target 'CoffeeShop' do
   # Pods for CoffeeShop
   pod 'SteviaLayout'
   pod 'ZHDropDownMenu'
+  pod 'QuickTableViewController'
 
 end

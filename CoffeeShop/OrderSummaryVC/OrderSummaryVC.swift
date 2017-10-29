@@ -16,7 +16,7 @@ class OrderSummaryVC: UIViewController {
     }
     
     func cancelOrderTapped() {
-        print("cancelOrderTapped")
+        navigationController?.popViewController(animated: true)
     }
     
     // Left Bar Button Item
@@ -47,9 +47,6 @@ class OrderSummaryVC: UIViewController {
         view.backgroundColor = UIColor.white
         
         navigationItem.title = "Order Summary"
-        navigationController?.hidesBarsOnSwipe = true
-        navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor:UIColor.gray]
-        navigationController?.navigationBar.isTranslucent = true
         
         orderSummaryView.tableView.tableFooterView = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: 1))
         
@@ -58,6 +55,12 @@ class OrderSummaryVC: UIViewController {
         orderSummaryView.confirmOrderButton.tap(confirmOrderTapped)
         orderSummaryView.cancelOrderButton.tap(cancelOrderTapped)
         leftBarButtonItem()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        navigationController?.hidesBarsOnSwipe = true
+        navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor:UIColor.gray]
+        navigationController?.navigationBar.isTranslucent = true
     }
     
 }

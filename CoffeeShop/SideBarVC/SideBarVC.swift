@@ -11,7 +11,6 @@ import UIKit
 enum LeftMenu: Int {
     case menu = 0
     case favorites
-    case profile
     case settings
 }
 
@@ -22,12 +21,11 @@ protocol LeftMenuProtocol: class {
 class SideBarVC: UIViewController, LeftMenuProtocol {
     
     // MARK: - create sub views and func
-    let menuArrays = ["Menu", "Favorites", "Profile", "Settings"]
+    let menuArrays = ["Menu", "Favorites", "Settings"]
     var isRunOneTime: Bool = true
     
     var menuVC: UIViewController!
     var favoritesVC: UIViewController!
-    var profileVC: UIViewController!
     var settingsVC: UIViewController!
     let sideBarView = SideBarView()
     
@@ -47,9 +45,6 @@ class SideBarVC: UIViewController, LeftMenuProtocol {
     func setupViewControllers(){
         let favoritesVC: FavoritesVC = FavoritesVC()
         self.favoritesVC = UINavigationController(rootViewController: favoritesVC)
-
-        let profileVC: ProfileVC = ProfileVC()
-        self.profileVC = UINavigationController(rootViewController: profileVC)
 
         let settingsVC: SettingsVC = SettingsVC()
         self.settingsVC = UINavigationController(rootViewController: settingsVC)
@@ -73,19 +68,10 @@ class SideBarVC: UIViewController, LeftMenuProtocol {
         
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        if (isRunOneTime) {
-            sideBarView.tableView.cellForRow(at: IndexPath(row: 0, section: 0))?.textLabel?.textColor = MYGREEN
-            isRunOneTime = false
-            print(isRunOneTime)
-        }
-    }
-    
     func changeViewController(_ menu: LeftMenu) {
         switch menu {
         case .menu: self.slideMenuController()?.changeMainViewController(self.menuVC, close: true)
         case .favorites: self.slideMenuController()?.changeMainViewController(self.favoritesVC, close: true)
-        case .profile: self.slideMenuController()?.changeMainViewController(self.profileVC, close: true)
         case .settings: self.slideMenuController()?.changeMainViewController(self.settingsVC, close: true)
         }
     }
@@ -100,12 +86,16 @@ extension SideBarVC: UITableViewDelegate, UITableViewDataSource {
         
         if let menu = LeftMenu(rawValue: indexPath.row) {
             switch menu {
-            case .menu, .favorites, .profile, .settings:
+            case .menu, .favorites, .settings:
                 let cell = UITableViewCell(style: UITableViewCellStyle.default, reuseIdentifier: "SideBarCell")
                 cell.backgroundColor = UIColor.clear
                 cell.selectionStyle = UITableViewCellSelectionStyle.none
                 cell.textLabel?.text = "\(menuArrays[indexPath.row])"
                 cell.textLabel?.textColor = WHITE
+                if (isRunOneTime) {
+                    cell.textLabel?.textColor = MYGREEN
+                    isRunOneTime = false
+                }
                 return cell
             }
         }
