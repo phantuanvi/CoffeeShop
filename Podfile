@@ -7,15 +7,6 @@ target 'CoffeeShop' do
 
   # Pods for CoffeeShop
   pod 'SteviaLayout'
-
-  target 'CoffeeShopTests' do
-    inherit! :search_paths
-    # Pods for testing
-  end
-
-  target 'CoffeeShopUITests' do
-    inherit! :search_paths
-    # Pods for testing
-  end
+  pod 'ZHDropDownMenu'
 
 end

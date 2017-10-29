@@ -29,6 +29,10 @@ class FavoritesVC: UIViewController {
         favoritesView.collectionView.delegate = self
         favoritesView.collectionView.dataSource = self
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        setStatusBarColor(UIBarStyle.blackTranslucent)
+    }
 }
 
 extension FavoritesVC: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {

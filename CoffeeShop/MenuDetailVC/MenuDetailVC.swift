@@ -28,14 +28,13 @@ class MenuDetailVC: UIViewController {
         super.viewDidLoad()
         
         navigationItem.title = titleNav
-        
+        self.setNavigationBarItem()
         navigationController?.hidesBarsOnSwipe = true
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor:WHITE]
         navigationController?.setNavigationBarHidden(false, animated: true)
         navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
         navigationController?.navigationBar.shadowImage = UIImage()
         navigationController?.navigationBar.isTranslucent = true
-        navigationController?.navigationBar.tintColor = WHITE
         
         leftBarButtonItem()
         
@@ -67,7 +66,7 @@ class MenuDetailVC: UIViewController {
     }
     
     @objc func leftButtonTapped(){
-        dismiss(animated: true, completion: nil)
+        self.navigationController?.popToRootViewController(animated: true)
     }
     
     // Enable the navbar scrolling
@@ -78,10 +77,6 @@ class MenuDetailVC: UIViewController {
     
     override func viewDidLayoutSubviews() {
         updateHeaderView()
-    }
-    
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .default
     }
     
     func updateHeaderView() {
@@ -118,7 +113,8 @@ extension MenuDetailVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        print("\(indexPath)")
+        let productDetailVC = ProductDetailVC()
+        self.navigationController?.pushViewController(productDetailVC, animated: true)
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

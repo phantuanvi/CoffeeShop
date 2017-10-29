@@ -50,13 +50,17 @@ class MenuVC: UIViewController {
         super.viewDidLoad()
         
         setupModel()
+        setNavigationBarItem()
         navigationController?.hidesBarsOnSwipe = true
         navigationItem.title = titleNav
-        self.setNavigationBarItem()
         
         view.backgroundColor = UIColor.black
         menuView.tableView.delegate = self
         menuView.tableView.dataSource = self
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        setStatusBarColor(UIBarStyle.blackTranslucent)
     }
     
 }
