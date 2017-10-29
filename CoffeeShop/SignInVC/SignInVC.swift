@@ -7,10 +7,13 @@
 //
 
 import UIKit
+import FBSDKLoginKit
 
 class SignInVC: UIViewController {
     
     let signInView = SignInView()
+    
+    let fbLoginManager = FBSDKLoginManager()
     
     override func loadView() {
         view = signInView
@@ -25,10 +28,18 @@ class SignInVC: UIViewController {
         signInView.userNameTextField.delegate = self
         signInView.passwordTextField.delegate = self
         signInView.signInButton.tap(signInTapped)
+        signInView.facebookButton.tap(fbLoginTapped)
     }
     
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .default
+    func fbLoginTapped() {
+        fbLoginManager.logIn(withPublishPermissions: ["publish_actions"], from: self, handler: { (result, error) in
+            if (error == nil) {
+                print("Login thanh cong")
+                self.signInTapped()
+            } else {
+                print("Login that bai")
+            }
+        })
     }
     
     func signInTapped(){

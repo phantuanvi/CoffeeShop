@@ -9,5 +9,7 @@ target 'CoffeeShop' do
   pod 'SteviaLayout'
   pod 'ZHDropDownMenu'
   pod 'QuickTableViewController'
+  pod 'FBSDKCoreKit'
+  pod 'FBSDKLoginKit'
 
 end
