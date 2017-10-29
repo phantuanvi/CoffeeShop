@@ -85,7 +85,10 @@ extension MenuVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("\(menuArrays[indexPath.row].menuTitle)")
+        
+        let detailVC = MenuDetailVC()
+        detailVC.titleNav = menuArrays[indexPath.row].menuTitle
+        self.navigationController?.pushViewController(detailVC, animated: true)
     }
 }
 
