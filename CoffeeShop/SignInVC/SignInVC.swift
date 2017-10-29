@@ -8,8 +8,10 @@
 
 import UIKit
 import FBSDKLoginKit
+import FirebaseAuth
+import GoogleSignIn
 
-class SignInVC: UIViewController {
+class SignInVC: UIViewController, GIDSignInUIDelegate {
     
     let signInView = SignInView()
     
@@ -23,19 +25,55 @@ class SignInVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor.white
+        navigationItem.title = "Sign In"
+        navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor:UIColor.gray]
+        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
+        navigationController?.navigationBar.shadowImage = UIImage()
+        navigationController?.navigationBar.isTranslucent = true
+        leftBarButtonItem()
         
         hideKeyboard()
-        signInView.userNameTextField.delegate = self
+        signInView.emailTextField.delegate = self
         signInView.passwordTextField.delegate = self
         signInView.signInButton.tap(signInTapped)
+        signInView.signUpButton.tap {
+            self.navigationController?.pushViewController(SignUpVC(), animated: true)
+        }
         signInView.facebookButton.tap(fbLoginTapped)
+        signInView.googleButton.tap(googleLoginTapped)
+        
+        GIDSignIn.sharedInstance().uiDelegate = self
+        GIDSignIn.sharedInstance().delegate = self
+    }
+    
+    // Left Bar Button Item
+    func leftBarButtonItem() {
+        
+        let leftButton = UIButton(type: .custom)
+        leftButton.setImage(UIImage(named: "back")?.withRenderingMode(.alwaysTemplate), for: UIControlState())
+        leftButton.tintColor = UIColor.lightGray
+        leftButton.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
+        leftButton.addTarget(self, action: #selector(self.leftButtonTapped), for: .touchUpInside)
+        let leftBarButton = UIBarButtonItem(customView: leftButton)
+        self.navigationItem.leftBarButtonItem = leftBarButton
+    }
+    @objc func leftButtonTapped(){
+        dismiss(animated: true, completion: nil)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        
+    }
+    
+    func googleLoginTapped() {
+        GIDSignIn.sharedInstance().signIn()
     }
     
     func fbLoginTapped() {
         fbLoginManager.logIn(withPublishPermissions: ["publish_actions"], from: self, handler: { (result, error) in
             if (error == nil) {
                 print("Login thanh cong")
-                self.signInTapped()
+                self.accessMenuVC()
             } else {
                 print("Login that bai")
             }
@@ -43,7 +81,20 @@ class SignInVC: UIViewController {
     }
     
     func signInTapped(){
-        print("signInTapped")
+        if let email = signInView.emailTextField.text, let password = signInView.passwordTextField.text {
+            Auth.auth().signIn(withEmail: email, password: password, completion: { (user, error) in
+                if error == nil {
+                    if let user = user {
+                        print("login success", user)
+                        self.accessMenuVC()
+                    }
+                }
+            })
+        }
+    }
+    
+    private func accessMenuVC() {
+        print("accessMenuVC")
         
         let menuVC:MenuVC = MenuVC()
         let sideBarVC:SideBarVC = SideBarVC()
@@ -59,7 +110,7 @@ extension SignInVC: UITextFieldDelegate {
     
     // TextField move up when keyboard is present
     func animateTextField(textField: UITextField, up: Bool) {
-        let movementDistance:CGFloat = -130
+        let movementDistance:CGFloat = -100
         let movementDuration: Double = 0.3
         
         var movement:CGFloat = 0
@@ -84,7 +135,7 @@ extension SignInVC: UITextFieldDelegate {
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        if textField == signInView.userNameTextField {
+        if textField == signInView.emailTextField {
             signInView.passwordTextField.becomeFirstResponder()
         } else {
             self.view.endEditing(true)
@@ -106,3 +157,11 @@ extension SignInVC {
     }
 }
 
+extension SignInVC: GIDSignInDelegate {
+    func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
+        if user != nil {
+            print("user: ", user)
+            self.accessMenuVC()
+        }
+    }
+}

@@ -33,18 +33,6 @@ class SignUpView: UIView {
         return imgView
     }()
     
-    let userNameTextField: UITextField = {
-        let textField = UITextField()
-        textField.placeholder = "User Name"
-        textField.font = UIFont(name: "OpenSans", size: 17)
-        textField.autocorrectionType = UITextAutocorrectionType.no
-        textField.keyboardType = UIKeyboardType.default
-        textField.enablesReturnKeyAutomatically = true
-        textField.returnKeyType = UIReturnKeyType.done
-        textField.clearButtonMode = UITextFieldViewMode.whileEditing;
-        return textField
-    }()
-    
     let emailTextField: UITextField = {
         let textField = UITextField()
         textField.placeholder = "Email"
@@ -100,7 +88,6 @@ class SignUpView: UIView {
     }
     
     private func render() {
-        userNameTextField.addBottomBorder(UIColor.lightGray, width: 2)
         emailTextField.addBottomBorder(UIColor.lightGray, width: 2)
         passwordTextField.addBottomBorder(UIColor.lightGray, width: 2)
         confirmPasswordTextField.addBottomBorder(UIColor.lightGray, width: 2)
@@ -109,7 +96,6 @@ class SignUpView: UIView {
             scrollView.sv(
                 contentView.sv(
                     avatarView,
-                    userNameTextField,
                     emailTextField,
                     passwordTextField,
                     confirmPasswordTextField,
@@ -128,17 +114,14 @@ class SignUpView: UIView {
         layout(
             70,
             avatarView ~ 100,
-            "",
-            |-20-userNameTextField-20-| ~ 50,
-            5,
+            30,
             |-20-emailTextField-20-| ~ 50,
             5,
             |-20-passwordTextField-20-| ~ 50,
             5,
             |-20-confirmPasswordTextField-20-| ~ 50,
             50,
-            |-20-signUpButton-20-| ~ 50,
-            20
+            |-20-signUpButton-20-| ~ 50
         )
         
     }

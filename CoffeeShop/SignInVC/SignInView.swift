@@ -8,6 +8,7 @@
 
 import UIKit
 import Stevia
+import GoogleSignIn
 
 class SignInView: UIView {
     
@@ -20,9 +21,9 @@ class SignInView: UIView {
         return imgView
     }()
     
-    let userNameTextField: UITextField = {
+    let emailTextField: UITextField = {
         let textField = UITextField()
-        textField.placeholder = "User Name"
+        textField.placeholder = "Email"
         textField.font = UIFont(name: "OpenSans", size: 17)
         textField.borderStyle = UITextBorderStyle.line
         textField.layer.borderColor = UIColor(red: 46/225, green: 204/225, blue: 113/225, alpha: 1).cgColor
@@ -62,6 +63,25 @@ class SignInView: UIView {
         return button
     }()
     
+    let signUpButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("Sign Up", for: UIControlState.normal)
+        button.titleLabel?.font = UIFont(name: "OpenSans-Semibold", size: 15)
+        button.setTitleColor(MYGREEN, for: UIControlState.normal)
+        button.isUserInteractionEnabled = true
+        return button
+    }()
+    
+    let forgotButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("Forgot Password", for: UIControlState.normal)
+        button.titleLabel?.font = UIFont(name: "OpenSans", size: 16)
+        button.setTitleColor(.gray, for: UIControlState.normal)
+        button.backgroundColor = UIColor.clear
+        button.isUserInteractionEnabled = true
+        return button
+    }()
+    
     let signInLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont(name: "OpenSans", size: 16)
@@ -98,25 +118,31 @@ class SignInView: UIView {
     private func render() {
         sv(
             logoView,
-            userNameTextField,
+            emailTextField,
             passwordTextField,
             signInButton,
             signInLabel,
+            signUpButton,
+            forgotButton,
             facebookButton,
             googleButton
         )
         logoView.width(100).centerHorizontally()
         facebookButton.height(50)
         equalSizes(facebookButton, googleButton)
+        equalSizes(signUpButton, forgotButton)
+        signUpButton.height(40)
         layout(
-            40,
+            70,
             logoView ~ 100,
             50,
-            |-25-userNameTextField-25-| ~ 50,
+            |-25-emailTextField-25-| ~ 50,
             10,
             |-25-passwordTextField-25-| ~ 50,
             10,
             |-25-signInButton-25-| ~ 50,
+            10,
+            |-25-signUpButton-25-forgotButton-25-|,
             "",
             |-25-signInLabel-25-| ~ 50,
             10,

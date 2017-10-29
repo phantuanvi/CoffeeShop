@@ -7,16 +7,23 @@
 //
 
 import UIKit
+import Firebase
 
 class SignUpVC: UIViewController {
     
     let signUpView = SignUpView()
     
     func signUpTapped() {
-        if (signUpView.userNameTextField.text?.isEmpty)! || (signUpView.emailTextField.text?.isEmpty)! || (signUpView.passwordTextField.text?.isEmpty)! || (signUpView.confirmPasswordTextField.text?.isEmpty)! {
+        if (signUpView.emailTextField.text?.isEmpty)! || (signUpView.passwordTextField.text?.isEmpty)! || (signUpView.confirmPasswordTextField.text?.isEmpty)! {
             print("One of these textFields is empty")
         } else {
-            print("Sign Up successfull")
+            if let email = signUpView.emailTextField.text, let password = signUpView.passwordTextField.text {
+                Auth.auth().createUser(withEmail: email, password: password) { (user, error) in
+                    if error == nil {
+                        print("SignUp success")
+                    }
+                }
+            }
         }
     }
     
@@ -48,7 +55,6 @@ class SignUpVC: UIViewController {
         navigationController?.navigationBar.isTranslucent = true
         
         signUpView.avatarView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleSelectAvatarImageView)))
-        signUpView.userNameTextField.delegate = self
         signUpView.emailTextField.delegate = self
         signUpView.passwordTextField.delegate = self
         signUpView.confirmPasswordTextField.delegate = self
@@ -56,10 +62,6 @@ class SignUpVC: UIViewController {
         
         leftBarButtonItem()
         self.hideKeyboard()
-    }
-    
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .default
     }
     
     // Left Bar Button Item
@@ -93,7 +95,6 @@ extension SignUpVC: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         
         switch textField {
-        case signUpView.userNameTextField: signUpView.emailTextField.becomeFirstResponder()
         case signUpView.emailTextField: signUpView.passwordTextField.becomeFirstResponder()
         case signUpView.passwordTextField: signUpView.confirmPasswordTextField.becomeFirstResponder()
         case signUpView.confirmPasswordTextField: self.signUpTapped()

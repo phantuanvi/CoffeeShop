@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class WelcomeVC: UIViewController {
     let welcomeView = WelcomeView()
@@ -24,8 +25,18 @@ class WelcomeVC: UIViewController {
         
     }
     
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
+    override func viewWillAppear(_ animated: Bool) {
+        Auth.auth().addStateDidChangeListener { (auth, user) in
+            if user != nil {
+                let menuVC:MenuVC = MenuVC()
+                let sideBarVC:SideBarVC = SideBarVC()
+                let navigationController:UINavigationController = UINavigationController(rootViewController: menuVC)
+                sideBarVC.menuVC = navigationController
+                let slideMenuController = SlideMenuController(mainViewController: navigationController, leftMenuViewController: sideBarVC)
+                slideMenuController.delegate = menuVC
+                self.present(slideMenuController, animated: true, completion: nil)
+            }
+        }
     }
     
     func signUpTapped(){
