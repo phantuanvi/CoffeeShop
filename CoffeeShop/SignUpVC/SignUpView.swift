@@ -82,6 +82,16 @@ class SignUpView: UIView {
         return button
     }()
     
+    let cancelButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("Cancel", for: UIControlState.normal)
+        button.titleLabel?.font = UIFont(name: "OpenSans-Semibold", size: 17)
+        button.setTitleColor(MYGREEN, for: UIControlState.normal)
+        button.isUserInteractionEnabled = true
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
+    
     convenience init() {
         self.init(frame: CGRect.zero)
         render()
@@ -99,7 +109,8 @@ class SignUpView: UIView {
                     emailTextField,
                     passwordTextField,
                     confirmPasswordTextField,
-                    signUpButton
+                    signUpButton,
+                    cancelButton
                 )
             )
         )
@@ -120,8 +131,10 @@ class SignUpView: UIView {
             |-20-passwordTextField-20-| ~ 50,
             5,
             |-20-confirmPasswordTextField-20-| ~ 50,
-            50,
-            |-20-signUpButton-20-| ~ 50
+            30,
+            |-20-signUpButton-20-| ~ 50,
+            10,
+            |-20-cancelButton-20-| ~ 50
         )
         
     }

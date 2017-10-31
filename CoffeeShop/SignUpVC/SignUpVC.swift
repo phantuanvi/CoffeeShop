@@ -13,7 +13,7 @@ class SignUpVC: UIViewController {
     
     let signUpView = SignUpView()
     
-    func signUpTapped() {
+    private func signUpTapped() {
         if (signUpView.emailTextField.text?.isEmpty)! || (signUpView.passwordTextField.text?.isEmpty)! || (signUpView.confirmPasswordTextField.text?.isEmpty)! {
             print("One of these textFields is empty")
         } else {
@@ -48,36 +48,20 @@ class SignUpVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor.white
-        navigationItem.title = "Sign Up"
-        navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor:UIColor.gray]
-        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
-        navigationController?.navigationBar.shadowImage = UIImage()
-        navigationController?.navigationBar.isTranslucent = true
         
         signUpView.avatarView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleSelectAvatarImageView)))
         signUpView.emailTextField.delegate = self
         signUpView.passwordTextField.delegate = self
         signUpView.confirmPasswordTextField.delegate = self
         signUpView.signUpButton.tap(signUpTapped)
+        signUpView.cancelButton.tap(cancelButtonTapped)
         
-        leftBarButtonItem()
         self.hideKeyboard()
     }
     
-    // Left Bar Button Item
-    func leftBarButtonItem() {
-        
-        let leftButton = UIButton(type: .custom)
-        leftButton.setImage(UIImage(named: "back")?.withRenderingMode(.alwaysTemplate), for: UIControlState())
-        leftButton.tintColor = UIColor.lightGray
-        leftButton.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
-        leftButton.addTarget(self, action: #selector(self.leftButtonTapped), for: .touchUpInside)
-        let leftBarButton = UIBarButtonItem(customView: leftButton)
-        self.navigationItem.leftBarButtonItem = leftBarButton
-    }
-    
-    @objc func leftButtonTapped(){
-        dismiss(animated: true, completion: nil)
+    private func cancelButtonTapped(){
+        print("cancel button tapped")
+        self.presentingViewController?.dismiss(animated: true, completion: nil)
     }
 }
 

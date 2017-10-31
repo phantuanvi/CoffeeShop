@@ -12,6 +12,8 @@
 		0C223A2E1FA590AC00EDBBCE /* OpenSans-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0C223A2A1FA58F6900EDBBCE /* OpenSans-LightItalic.ttf */; };
 		0C223A2F1FA590AE00EDBBCE /* OpenSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0C223A2B1FA58F6C00EDBBCE /* OpenSans-Regular.ttf */; };
 		0C223A301FA590B000EDBBCE /* OpenSans-Semibold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0C223A2C1FA58F6E00EDBBCE /* OpenSans-Semibold.ttf */; };
+		0C56E1851FA63980001ED8B4 /* ForgotPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C56E1841FA63980001ED8B4 /* ForgotPasswordView.swift */; };
+		0C56E1871FA6399A001ED8B4 /* ForgotPasswordVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C56E1861FA6399A001ED8B4 /* ForgotPasswordVC.swift */; };
 		0C78AA8B1FA4D46400940B11 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C78AA8A1FA4D46400940B11 /* AppDelegate.swift */; };
 		0C78AA921FA4D46400940B11 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0C78AA911FA4D46400940B11 /* Assets.xcassets */; };
 		0C78AA951FA4D46400940B11 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0C78AA931FA4D46400940B11 /* LaunchScreen.storyboard */; };
@@ -72,6 +74,8 @@
 		0C223A2A1FA58F6900EDBBCE /* OpenSans-LightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-LightItalic.ttf"; sourceTree = "<group>"; };
 		0C223A2B1FA58F6C00EDBBCE /* OpenSans-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Regular.ttf"; sourceTree = "<group>"; };
 		0C223A2C1FA58F6E00EDBBCE /* OpenSans-Semibold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Semibold.ttf"; sourceTree = "<group>"; };
+		0C56E1841FA63980001ED8B4 /* ForgotPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordView.swift; sourceTree = "<group>"; };
+		0C56E1861FA6399A001ED8B4 /* ForgotPasswordVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordVC.swift; sourceTree = "<group>"; };
 		0C78AA871FA4D46400940B11 /* CoffeeShop.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CoffeeShop.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0C78AA8A1FA4D46400940B11 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0C78AA911FA4D46400940B11 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -139,6 +143,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0C56E1831FA6393D001ED8B4 /* ForgotPasswordVC */ = {
+			isa = PBXGroup;
+			children = (
+				0C56E1841FA63980001ED8B4 /* ForgotPasswordView.swift */,
+				0C56E1861FA6399A001ED8B4 /* ForgotPasswordVC.swift */,
+			);
+			path = ForgotPasswordVC;
+			sourceTree = "<group>";
+		};
 		0C78AA7E1FA4D46300940B11 = {
 			isa = PBXGroup;
 			children = (
@@ -162,6 +175,7 @@
 		0C78AA891FA4D46400940B11 /* CoffeeShop */ = {
 			isa = PBXGroup;
 			children = (
+				0C56E1831FA6393D001ED8B4 /* ForgotPasswordVC */,
 				0C88FC681FA5C07500B16394 /* OrderSummaryVC */,
 				0C88FC631FA5AF7F00B16394 /* ProductDetailVC */,
 				0C78AAF11FA5017000940B11 /* MenuDetailVC */,
@@ -534,10 +548,12 @@
 				0C78AADC1FA4EFC400940B11 /* SideBarVC.swift in Sources */,
 				0C78AADF1FA4F0A200940B11 /* MenuVC.swift in Sources */,
 				0C78AAE11FA4F0B600940B11 /* MenuView.swift in Sources */,
+				0C56E1851FA63980001ED8B4 /* ForgotPasswordView.swift in Sources */,
 				0C78AAE81FA4F97200940B11 /* FavoritesVC.swift in Sources */,
 				0C78AADA1FA4EFAC00940B11 /* SideBarView.swift in Sources */,
 				0C88FC671FA5AFB600B16394 /* ProductDetailVC.swift in Sources */,
 				0C223A281FA586F800EDBBCE /* MenuDetailView.swift in Sources */,
+				0C56E1871FA6399A001ED8B4 /* ForgotPasswordVC.swift in Sources */,
 				0C78AAC81FA4DAF700940B11 /* Color.swift in Sources */,
 				0C88FC6A1FA5C0A900B16394 /* OrderSummaryVC.swift in Sources */,
 				0C78AAF31FA501BF00940B11 /* MenuDetailVC.swift in Sources */,

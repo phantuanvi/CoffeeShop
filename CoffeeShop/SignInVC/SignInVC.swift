@@ -25,20 +25,13 @@ class SignInVC: UIViewController, GIDSignInUIDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor.white
-        navigationItem.title = "Sign In"
-        navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor:UIColor.gray]
-        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
-        navigationController?.navigationBar.shadowImage = UIImage()
-        navigationController?.navigationBar.isTranslucent = true
-        leftBarButtonItem()
         
         hideKeyboard()
         signInView.emailTextField.delegate = self
         signInView.passwordTextField.delegate = self
         signInView.signInButton.tap(signInTapped)
-        signInView.signUpButton.tap {
-            self.navigationController?.pushViewController(SignUpVC(), animated: true)
-        }
+        signInView.signUpButton.tap(signUpTapped)
+        signInView.forgotButton.tap(forgotPasswordTapped)
         signInView.facebookButton.tap(fbLoginTapped)
         signInView.googleButton.tap(googleLoginTapped)
         
@@ -46,41 +39,32 @@ class SignInVC: UIViewController, GIDSignInUIDelegate {
         GIDSignIn.sharedInstance().delegate = self
     }
     
-    // Left Bar Button Item
-    func leftBarButtonItem() {
-        
-        let leftButton = UIButton(type: .custom)
-        leftButton.setImage(UIImage(named: "back")?.withRenderingMode(.alwaysTemplate), for: UIControlState())
-        leftButton.tintColor = UIColor.lightGray
-        leftButton.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
-        leftButton.addTarget(self, action: #selector(self.leftButtonTapped), for: .touchUpInside)
-        let leftBarButton = UIBarButtonItem(customView: leftButton)
-        self.navigationItem.leftBarButtonItem = leftBarButton
-    }
-    @objc func leftButtonTapped(){
-        dismiss(animated: true, completion: nil)
+    private func signUpTapped() {
+        let signUpVC = SignUpVC()
+        present(signUpVC, animated: true, completion: nil)
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        
+    private func forgotPasswordTapped() {
+        let forgotPasswordVC = ForgotPasswordVC()
+        present(forgotPasswordVC, animated: true, completion: nil)
     }
     
-    func googleLoginTapped() {
+    private func googleLoginTapped() {
         GIDSignIn.sharedInstance().signIn()
     }
     
-    func fbLoginTapped() {
+    private func fbLoginTapped() {
         fbLoginManager.logIn(withPublishPermissions: ["publish_actions"], from: self, handler: { (result, error) in
             if (error == nil) {
                 print("Login thanh cong")
                 self.accessMenuVC()
             } else {
-                print("Login that bai")
+                print(error?.localizedDescription)
             }
         })
     }
     
-    func signInTapped(){
+    private func signInTapped(){
         if let email = signInView.emailTextField.text, let password = signInView.passwordTextField.text {
             Auth.auth().signIn(withEmail: email, password: password, completion: { (user, error) in
                 if error == nil {
