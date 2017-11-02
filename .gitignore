@@ -139,8 +139,7 @@ playground.xcworkspace
 ## Various settings
 
 ## Other
-CoffeeShopTests/
-CoffeeShopUITests/
+**/GoogleService-Info.plist
 
 ### Xcode Patch ###
 *.xcodeproj/*
