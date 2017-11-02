@@ -10,12 +10,12 @@ import UIKit
 
 class FavoritesVC: UIViewController {
     
+    // MARK: create variables
     var titleNav: String = "Favorites"
     
     let favoritesView = FavoritesView()
     
-    //MARK: Lifecycle
-    
+    // MARK: Lifecycle
     override func loadView() {
         view = favoritesView
     }

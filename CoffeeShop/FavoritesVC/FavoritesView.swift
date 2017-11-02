@@ -11,6 +11,7 @@ import Stevia
 
 class FavoritesView: UIView {
     
+    // MARK: create variables
     var flowLayout: UICollectionViewFlowLayout = {
         var flow = UICollectionViewFlowLayout()
         flow.sectionInset = UIEdgeInsetsMake(0, 0, 0, 0)
@@ -27,6 +28,7 @@ class FavoritesView: UIView {
         return cv
     }()
     
+    // MARK: life cycle
     convenience init() {
         self.init(frame: CGRect.zero)
         

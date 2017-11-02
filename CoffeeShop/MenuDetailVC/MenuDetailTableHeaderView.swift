@@ -11,6 +11,7 @@ import Stevia
 
 class MenuDetailTableHeaderView: UIView {
     
+    // MARK: create variables
     let headerImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
@@ -58,6 +59,7 @@ class MenuDetailTableHeaderView: UIView {
         return label
     }()
 
+    // MARK: life cycle
     convenience init() {
         self.init(frame: CGRect.zero)
         render()

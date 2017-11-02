@@ -10,9 +10,11 @@ import UIKit
 import Firebase
 
 class WelcomeVC: UIViewController {
+    
+    // MARK: create variables
     let welcomeView = WelcomeView()
     
-    //MARK: Lifecycle
+    // MARK: Lifecycle
     override func loadView() {
         view = welcomeView
     }
@@ -25,24 +27,11 @@ class WelcomeVC: UIViewController {
         
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-//        Auth.auth().addStateDidChangeListener { (auth, user) in
-//            if user != nil {
-//                let menuVC:MenuVC = MenuVC()
-//                let sideBarVC:SideBarVC = SideBarVC()
-//                let navigationController:UINavigationController = UINavigationController(rootViewController: menuVC)
-//                sideBarVC.menuVC = navigationController
-//                let slideMenuController = SlideMenuController(mainViewController: navigationController, leftMenuViewController: sideBarVC)
-//                slideMenuController.delegate = menuVC
-//                self.present(slideMenuController, animated: true, completion: nil)
-//            }
-//        }
-    }
-    
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
     
+    // MARK: create functions
     private func signUpTapped(){
         print("signUpTapped")
         let signUpVC = SignUpVC()

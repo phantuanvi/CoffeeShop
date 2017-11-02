@@ -11,7 +11,7 @@ import Stevia
 
 class SideBarView: UIView {
     
-    // MARK: create views
+    // MARK: create variables
     let backgroundView: UIImageView = {
         let imgView = UIImageView()
         imgView.image = UIImage(named: "backgroundCoffee")
@@ -22,7 +22,7 @@ class SideBarView: UIView {
     let tableView: UITableView = {
         let tableView = UITableView()
         tableView.frame = CGRect.zero
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "SideBarCell")
+        tableView.register(MenuDetailTableViewCell.self, forCellReuseIdentifier: "SideBarCell")
         tableView.alwaysBounceVertical = false
         tableView.backgroundColor = UIColor.clear
         tableView.separatorColor = UIColor.clear
@@ -30,49 +30,24 @@ class SideBarView: UIView {
         return tableView
     }()
     
-    let logInButton: UIButton = {
-        let button = UIButton()
-        button.setTitle("Log In", for: UIControlState.normal)
-        button.titleLabel?.font = UIFont(name: "OpenSans-Semibold", size: 17)
-        button.setTitleColor(WHITE, for: UIControlState.normal)
-        button.backgroundColor = MYGREEN
-        button.isUserInteractionEnabled = true
-        return button
-    }()
-    
-    let registerButton: UIButton = {
-        let button = UIButton()
-        button.setTitle("Register", for: UIControlState.normal)
-        button.titleLabel?.font = UIFont(name: "OpenSans-Semibold", size: 17)
-        button.setTitleColor(WHITE, for: UIControlState.normal)
-        button.backgroundColor = MYGREEN
-        button.isUserInteractionEnabled = true
-        return button
-    }()
-    
+    // MARK: life cycle
     convenience init() {
         self.init(frame: CGRect.zero)
+        
         render()
     }
     
     private func render() {
         sv(
             backgroundView,
-            tableView,
-            logInButton,
-            registerButton
+            tableView
         )
         
         backgroundView.fillContainer()
-        logInButton.height(60)
-        equalSizes(logInButton, registerButton)
         
-        layout(
-            "",
-            |-20-tableView| ~ 272,
-            80,
-            |logInButton-0-registerButton|,
-            0
-        )
+        tableView.Top == self.CenterY
+        tableView.Left == self.Left
+        tableView.Right == self.Right
+        tableView.Bottom == self.Bottom
     }
 }

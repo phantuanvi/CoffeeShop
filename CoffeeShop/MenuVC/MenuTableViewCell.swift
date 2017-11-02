@@ -11,6 +11,7 @@ import Stevia
 
 class MenuTableViewCell: UITableViewCell {
     
+    // MARK: create variables
     let bgView: UIImageView = {
         let imgView = UIImageView()
         return imgView
@@ -32,6 +33,7 @@ class MenuTableViewCell: UITableViewCell {
         return label
     }()
     
+    // MARK: life cycle
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         

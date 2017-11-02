@@ -11,6 +11,7 @@ import Stevia
 
 class MenuDetailTableViewCell: UITableViewCell {
     
+    // MARK: create variables
     let productImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
@@ -52,6 +53,7 @@ class MenuDetailTableViewCell: UITableViewCell {
         return imageView
     }()
     
+    // MARK: life cycle
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         

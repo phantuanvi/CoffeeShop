@@ -16,6 +16,8 @@ import GoogleSignIn
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    
+    var viewController = UIViewController()
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
@@ -25,9 +27,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         GIDSignIn.sharedInstance().clientID = FirebaseApp.app()?.options.clientID
         
         window = UIWindow(frame: UIScreen.main.bounds)
-        let welcomeVC = WelcomeVC()
+        
+        if let isFirstTime = PTVAuthService.sharedInstance.isFirstTime {
+            if !isFirstTime {
+                // When lauch app the first time, run WelcomeVC
+                PTVAuthService.sharedInstance.isFirstTime = true
+                let welcomeVC = WelcomeVC()
+                self.viewController = welcomeVC
+            } else {
+                
+                StartApp.shared.start { (viewController) in
+                    self.viewController = viewController
+                }
+            }
+        }
+        
         if let window = window {
-            window.rootViewController = welcomeVC
+            window.rootViewController = self.viewController
             window.makeKeyAndVisible()
         }
         

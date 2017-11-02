@@ -13,17 +13,19 @@ private let kTableHeaderHeight: CGFloat = 200.0
 
 class MenuDetailVC: UIViewController {
     
+    // MARK: create variables
     let coffeeMenus = ["Choco Frappe", "Caramel Frappe", "Kick Frappe", "Cappuccino"]
     
     var headerView: UIView!
     let menuDetailView = MenuDetailView()
     
     var titleNav: String = ""
+    
+    //MARK: Lifecycle
     override func loadView() {
         view = menuDetailView
     }
     
-    //MARK: Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -58,8 +60,16 @@ class MenuDetailVC: UIViewController {
         setStatusBarColor(UIBarStyle.blackTranslucent)
     }
     
+    override func viewDidLayoutSubviews() {
+        updateHeaderView()
+    }
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        updateHeaderView()
+    }
+    
+    // MARK: create functions
     // Left Bar Button Item
-    func leftBarButtonItem() {
+    private func leftBarButtonItem() {
         
         let leftButton = UIButton(type: .custom)
         leftButton.setImage(UIImage(named: "back")?.withRenderingMode(.alwaysTemplate), for: UIControlState())
@@ -74,17 +84,7 @@ class MenuDetailVC: UIViewController {
         navigationController?.popViewController(animated: true)
     }
     
-    // Enable the navbar scrolling
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
-    }
-    
-    override func viewDidLayoutSubviews() {
-        updateHeaderView()
-    }
-    
-    func updateHeaderView() {
+    private func updateHeaderView() {
         
         var headerRect = CGRect(x: 0, y: -kTableHeaderHeight, width: menuDetailView.tableView.bounds.width, height: kTableHeaderHeight)
         
@@ -92,11 +92,6 @@ class MenuDetailVC: UIViewController {
         headerRect.size.height = -menuDetailView.tableView.contentOffset.y
         
         headerView.frame = headerRect
-    }
-    
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        
-        updateHeaderView()
     }
 }
 

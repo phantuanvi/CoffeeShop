@@ -11,17 +11,24 @@ import FBSDKLoginKit
 import FirebaseAuth
 import GoogleSignIn
 
+enum LogInType {
+    case email
+    case facebook
+    case google
+}
+
 class SignInVC: UIViewController, GIDSignInUIDelegate {
     
+    // MARK: create variables
     let signInView = SignInView()
     
     let fbLoginManager = FBSDKLoginManager()
     
+    // MARK: life cycle
     override func loadView() {
         view = signInView
     }
     
-    //MARK: Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor.white
@@ -29,6 +36,7 @@ class SignInVC: UIViewController, GIDSignInUIDelegate {
         hideKeyboard()
         signInView.emailTextField.delegate = self
         signInView.passwordTextField.delegate = self
+        
         signInView.signInButton.tap(signInTapped)
         signInView.signUpButton.tap(signUpTapped)
         signInView.forgotButton.tap(forgotPasswordTapped)
@@ -37,6 +45,15 @@ class SignInVC: UIViewController, GIDSignInUIDelegate {
         
         GIDSignIn.sharedInstance().uiDelegate = self
         GIDSignIn.sharedInstance().delegate = self
+    }
+    
+    
+    //MARK: create functions
+    private func signInTapped(){
+        if let email = signInView.emailTextField.text, let password = signInView.passwordTextField.text {
+            let credential = EmailAuthProvider.credential(withEmail: email, password: password)
+            logInOf(type: LogInType.email, credential: credential)
+        }
     }
     
     private func signUpTapped() {
@@ -49,44 +66,44 @@ class SignInVC: UIViewController, GIDSignInUIDelegate {
         present(forgotPasswordVC, animated: true, completion: nil)
     }
     
+    private func fbLoginTapped() {
+        fbLoginManager.logIn(withPublishPermissions: ["publish_actions"], from: self, handler: { (result, error) in
+            
+            if let error = error {
+                print(error.localizedDescription)
+                OperationQueue.main.addOperation {
+                    self.presentingViewController?.dismiss(animated: true, completion: nil)
+                }
+                return
+            }
+            let credential = FacebookAuthProvider.credential(withAccessToken: FBSDKAccessToken.current().tokenString)
+            self.logInOf(type: .facebook, credential: credential)
+        })
+    }
+    
     private func googleLoginTapped() {
         GIDSignIn.sharedInstance().signIn()
     }
     
-    private func fbLoginTapped() {
-        fbLoginManager.logIn(withPublishPermissions: ["publish_actions"], from: self, handler: { (result, error) in
-            if (error == nil) {
-                print("Login thanh cong")
-                self.accessMenuVC()
+    private func logInOf(type: LogInType, credential: AuthCredential) {
+        PTVAuthService.sharedInstance.logInWith(credential: credential) { (success) in
+            if success {
+                StartApp.shared.start(handler: { (viewController) in
+                    self.present(viewController, animated: true, completion: nil)
+                })
             } else {
-                print(error?.localizedDescription)
-            }
-        })
-    }
-    
-    private func signInTapped(){
-        if let email = signInView.emailTextField.text, let password = signInView.passwordTextField.text {
-            Auth.auth().signIn(withEmail: email, password: password, completion: { (user, error) in
-                if error == nil {
-                    if let user = user {
-                        print("login success", user)
-                        self.accessMenuVC()
+                if type == .email {
+                    let alertController = UIAlertController(title: "Alert", message: "Incorrect email or password", preferredStyle: UIAlertControllerStyle.alert)
+                    let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel, handler: nil)
+                    alertController.addAction(cancelAction)
+                    self.present(alertController, animated: true, completion: nil)
+                } else {
+                    OperationQueue.main.addOperation {
+                        self.presentingViewController?.dismiss(animated: true, completion: nil)
                     }
                 }
-            })
+            }
         }
-    }
-    
-    private func accessMenuVC() {
-        print("accessMenuVC")
-        
-        let menuVC:MenuVC = MenuVC()
-        let sideBarVC:SideBarVC = SideBarVC()
-        let navigationController:UINavigationController = UINavigationController(rootViewController: menuVC)
-        sideBarVC.menuVC = navigationController
-        let slideMenuController = SlideMenuController(mainViewController: navigationController, leftMenuViewController: sideBarVC)
-        slideMenuController.delegate = menuVC
-        present(slideMenuController, animated: true, completion: nil)
     }
 }
 
@@ -143,9 +160,16 @@ extension SignInVC {
 
 extension SignInVC: GIDSignInDelegate {
     func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
-        if user != nil {
-            print("user: ", user)
-            self.accessMenuVC()
+        if let error = error {
+            print(error.localizedDescription)
+            OperationQueue.main.addOperation {
+                self.presentingViewController?.dismiss(animated: true, completion: nil)
+            }
+            return
         }
+        
+        guard let authentication = user.authentication else { return }
+        let credential = GoogleAuthProvider.credential(withIDToken: authentication.idToken, accessToken: authentication.accessToken)
+        logInOf(type: LogInType.google, credential: credential)
     }
 }

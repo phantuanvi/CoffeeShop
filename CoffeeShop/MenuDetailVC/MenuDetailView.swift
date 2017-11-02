@@ -11,6 +11,7 @@ import Stevia
 
 class MenuDetailView: UIView {
     
+    // MARK: create variables
     let tableView: UITableView = {
         let tableView = UITableView()
         tableView.frame = CGRect.zero
@@ -23,6 +24,7 @@ class MenuDetailView: UIView {
         return tableView
     }()
     
+    // MARK: life cycle
     convenience init() {
         self.init(frame: CGRect.zero)
         render()

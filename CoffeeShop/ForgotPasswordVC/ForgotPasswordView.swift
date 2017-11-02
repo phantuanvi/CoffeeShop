@@ -11,17 +11,18 @@ import Stevia
 
 class ForgotPasswordView: UIView {
 
+    // MARK: create views
     let emailTextField: UITextField = {
         let textField = UITextField()
         textField.placeholder = "Email"
         textField.font = UIFont(name: "OpenSans", size: 17)
-        textField.borderStyle = UITextBorderStyle.line
-        textField.layer.borderColor = UIColor(red: 46/225, green: 204/225, blue: 113/225, alpha: 1).cgColor
+        textField.layer.borderColor = UIColor.lightGray.cgColor
+        textField.layer.borderWidth = 1.0
         textField.autocorrectionType = UITextAutocorrectionType.no
         textField.enablesReturnKeyAutomatically = true
         textField.keyboardType = UIKeyboardType.default
         textField.returnKeyType = UIReturnKeyType.done
-        textField.clearButtonMode = UITextFieldViewMode.whileEditing;
+        textField.clearButtonMode = UITextFieldViewMode.whileEditing
         textField.textAlignment = .center
         return textField
     }()
@@ -46,6 +47,7 @@ class ForgotPasswordView: UIView {
         return button
     }()
     
+    // MARK: life cycle
     convenience init() {
         self.init(frame: CGRect.zero)
         

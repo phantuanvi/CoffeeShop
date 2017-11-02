@@ -22,26 +22,13 @@ struct MenuModel {
 
 class MenuVC: UIViewController {
     
-    // MARK: - create sub views and func
+    // MARK: - create variables
     var menuArrays: [MenuModel] = []
     var titleNav: String = "Menu"
     
     let menuView = MenuView()
     
-    func setupModel() {
-        let menu1 = MenuModel(title: "Coffee", detail: "Freshly brewed coffee", image: "menuCoffee.png")
-        menuArrays.append(menu1)
-        let menu2 = MenuModel(title: "Breakfast", detail: "Perfectly baked & served warm", image: "menuBreakfast.png")
-        menuArrays.append(menu2)
-        let menu3 = MenuModel(title: "Munchies", detail: "Perfectly baked & served warm", image: "menuMunchies.png")
-        menuArrays.append(menu3)
-        let menu4 = MenuModel(title: "Sandwiches", detail: "Fresh, healthy and tasty", image: "menuSandwiches.png")
-        menuArrays.append(menu4)
-        let menu5 = MenuModel(title: "Specialty Drinks", detail: "Special drinks for every taste", image: "menuSpecialtyDrinks.png")
-        menuArrays.append(menu5)
-    }
-    
-    //MARK: Lifecycle
+    // MARK: Lifecycle
     override func loadView() {
         view = menuView
     }
@@ -61,6 +48,20 @@ class MenuVC: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         setStatusBarColor(UIBarStyle.blackTranslucent)
+    }
+    
+    // MARK: create functions
+    func setupModel() {
+        let menu1 = MenuModel(title: "Coffee", detail: "Freshly brewed coffee", image: "menuCoffee.png")
+        menuArrays.append(menu1)
+        let menu2 = MenuModel(title: "Breakfast", detail: "Perfectly baked & served warm", image: "menuBreakfast.png")
+        menuArrays.append(menu2)
+        let menu3 = MenuModel(title: "Munchies", detail: "Perfectly baked & served warm", image: "menuMunchies.png")
+        menuArrays.append(menu3)
+        let menu4 = MenuModel(title: "Sandwiches", detail: "Fresh, healthy and tasty", image: "menuSandwiches.png")
+        menuArrays.append(menu4)
+        let menu5 = MenuModel(title: "Specialty Drinks", detail: "Special drinks for every taste", image: "menuSpecialtyDrinks.png")
+        menuArrays.append(menu5)
     }
     
 }

@@ -10,6 +10,8 @@ import UIKit
 import Stevia
 
 class FavoriteCollectionViewCell: UICollectionViewCell {
+    
+    // MARK: create variables
     lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont(name: "OpenSans-Semibold", size: 17)
@@ -52,24 +54,7 @@ class FavoriteCollectionViewCell: UICollectionViewCell {
         return imgView
     }()
     
-    private func addViews() {
-        contentView.addSubview(titleLabel)
-        contentView.addSubview(detailLabel)
-        contentView.addSubview(productImageView)
-        contentView.addSubview(costLabel)
-        contentView.addSubview(heartImageView)
-    }
-    
-    private func addConstraints() {
-        contentView.addConstraints(withFormat: "V:|-10-[v0(20)]-5-[v1(20)]-10-[v2][v3(20)]", views: titleLabel, detailLabel, productImageView, costLabel)
-        
-        contentView.addConstraints(withFormat: "V:[v0][v1(15)]-10-|", views: productImageView, heartImageView)
-        
-        contentView.addConstraints(withFormat: "H:|-10-[v0][v1(15)]-10-|", views: costLabel, heartImageView)
-        
-        NSLayoutConstraint(item: productImageView, attribute: .centerX, relatedBy: .equal, toItem: contentView, attribute: .centerX, multiplier: 1, constant: 0).isActive = true
-    }
-    
+    // MARK: life cycle
     override init(frame: CGRect) {
         super.init(frame: frame)
         contentView.backgroundColor = UIColor.white
@@ -103,5 +88,24 @@ class FavoriteCollectionViewCell: UICollectionViewCell {
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
+    }
+    
+    // MARK: create functions
+    private func addViews() {
+        contentView.addSubview(titleLabel)
+        contentView.addSubview(detailLabel)
+        contentView.addSubview(productImageView)
+        contentView.addSubview(costLabel)
+        contentView.addSubview(heartImageView)
+    }
+    
+    private func addConstraints() {
+        contentView.addConstraints(withFormat: "V:|-10-[v0(20)]-5-[v1(20)]-10-[v2][v3(20)]", views: titleLabel, detailLabel, productImageView, costLabel)
+        
+        contentView.addConstraints(withFormat: "V:[v0][v1(15)]-10-|", views: productImageView, heartImageView)
+        
+        contentView.addConstraints(withFormat: "H:|-10-[v0][v1(15)]-10-|", views: costLabel, heartImageView)
+        
+        NSLayoutConstraint(item: productImageView, attribute: .centerX, relatedBy: .equal, toItem: contentView, attribute: .centerX, multiplier: 1, constant: 0).isActive = true
     }
 }

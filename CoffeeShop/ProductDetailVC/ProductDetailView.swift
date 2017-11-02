@@ -12,6 +12,7 @@ import Stevia
 
 class ProductDetailView: UIView {
     
+    // MARK: create variables
     let productImageView: UIImageView = {
         let imgView = UIImageView()
         imgView.contentMode = .scaleAspectFit
@@ -99,6 +100,7 @@ class ProductDetailView: UIView {
         return button
     }()
     
+    // MARK: life cycle
     convenience init() {
         self.init(frame: CGRect.zero)
         render()

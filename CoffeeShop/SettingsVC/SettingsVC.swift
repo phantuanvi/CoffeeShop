@@ -11,8 +11,10 @@ import QuickTableViewController
 
 class SettingsVC: QuickTableViewController {
 
+    // MARK: create variables
     var titleNav: String = "Settings"
     
+    // MARK: life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
 

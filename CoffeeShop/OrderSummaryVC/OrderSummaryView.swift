@@ -11,6 +11,7 @@ import Stevia
 
 class OrderSummaryView: UIView {
     
+    // MARK: create variables
     let scrollView: UIScrollView = {
         let scrollView = UIScrollView(frame: CGRect.zero)
         scrollView.isUserInteractionEnabled = true
@@ -99,13 +100,14 @@ class OrderSummaryView: UIView {
         return button
     }()
     
+    // MARK: life cycle
     convenience init() {
         self.init(frame: CGRect.zero)
         
         render()
     }
     
-    fileprivate func render() {
+    private func render() {
         
         totalView.addTopBorder(UIColor.lightGray, width: 2)
         totalView.addBottomBorder(UIColor.lightGray, width: 2)

@@ -11,8 +11,10 @@ import Firebase
 
 class ForgotPasswordVC: UIViewController {
     
+    // MARK: create variables
     let forgotPasswordView = ForgotPasswordView()
     
+    // MARK: life cycle
     override func loadView() {
         view = forgotPasswordView
     }
@@ -27,6 +29,7 @@ class ForgotPasswordVC: UIViewController {
         forgotPasswordView.cancelButton.tap(cancelButtonTapped)
     }
 
+    // MARK: create functions
     private func resetPasswordTapped() {
         
         if let email = forgotPasswordView.emailTextField.text {
@@ -60,7 +63,7 @@ extension ForgotPasswordVC: UITextFieldDelegate {
 
 // dismiss keyboard when touch outside textField
 extension ForgotPasswordVC {
-    func hideKeyboard() {
+    private func hideKeyboard() {
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         view.addGestureRecognizer(tap)
     }

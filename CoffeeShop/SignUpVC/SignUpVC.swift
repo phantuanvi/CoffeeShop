@@ -11,34 +11,8 @@ import Firebase
 
 class SignUpVC: UIViewController {
     
+    // MARK: - create variables
     let signUpView = SignUpView()
-    
-    private func signUpTapped() {
-        if (signUpView.emailTextField.text?.isEmpty)! || (signUpView.passwordTextField.text?.isEmpty)! || (signUpView.confirmPasswordTextField.text?.isEmpty)! {
-            print("One of these textFields is empty")
-        } else {
-            if let email = signUpView.emailTextField.text, let password = signUpView.passwordTextField.text {
-                Auth.auth().createUser(withEmail: email, password: password) { (user, error) in
-                    if error == nil {
-                        print("SignUp success")
-                    }
-                }
-            }
-        }
-    }
-    
-    @objc func handleSelectAvatarImageView() {
-        
-        print("handleSelectAvatarImageView")
-        // Hide the keyboard
-        self.view.endEditing(true)
-        
-        // pick media from photo library
-        let imagePickerController = UIImagePickerController()
-        imagePickerController.sourceType = .photoLibrary
-        imagePickerController.delegate = self
-        present(imagePickerController, animated: true, completion: nil)
-    }
     
     //MARK: Lifecycle
     override func loadView() {
@@ -49,19 +23,99 @@ class SignUpVC: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = UIColor.white
         
-        signUpView.avatarView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleSelectAvatarImageView)))
         signUpView.emailTextField.delegate = self
         signUpView.passwordTextField.delegate = self
         signUpView.confirmPasswordTextField.delegate = self
-        signUpView.signUpButton.tap(signUpTapped)
+        
+        signUpView.avatarView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleSelectAvatarImageView)))
         signUpView.cancelButton.tap(cancelButtonTapped)
+        signUpView.forgotButton.tap(forgotPasswordTapped)
+        signUpView.signUpButton.tap(signUpTapped)
         
         self.hideKeyboard()
+    }
+    
+    //MARK: create functions
+    @objc func handleSelectAvatarImageView() {
+        // Hide the keyboard
+        self.view.endEditing(true)
+        
+        // pick media from photo library
+        let imagePickerController = UIImagePickerController()
+        imagePickerController.sourceType = .photoLibrary
+        imagePickerController.delegate = self
+        present(imagePickerController, animated: true, completion: nil)
     }
     
     private func cancelButtonTapped(){
         print("cancel button tapped")
         self.presentingViewController?.dismiss(animated: true, completion: nil)
+    }
+    
+    private func forgotPasswordTapped() {
+        let forgotPasswordVC = ForgotPasswordVC()
+        present(forgotPasswordVC, animated: true, completion: nil)
+    }
+    
+    private func signUpTapped() {
+        if (signUpView.emailTextField.text?.isEmpty)! || (signUpView.passwordTextField.text?.isEmpty)! || (signUpView.confirmPasswordTextField.text?.isEmpty)! {
+            alertValidate(message: "One of these textFields is empty", handler: nil)
+        } else {
+            
+            guard let email = signUpView.emailTextField.text else { return }
+            guard let password = signUpView.passwordTextField.text else { return }
+            guard let conPassword = signUpView.confirmPasswordTextField.text else { return }
+            
+            if password != conPassword {
+                alertValidate(message: "Password is not match", handler: nil)
+            }
+            
+            if isValidEmailAddress(email) {
+                
+                PTVAuthService.sharedInstance.registerUser(email: email, password: password, completion: { (message, success) in
+                    if success {
+                        self.alertValidate(message: "SignUp is success with \(email)", handler: { (alertAction) in
+                            StartApp.shared.start(handler: { (viewController) in
+                                self.present(viewController, animated: true, completion: nil)
+                            })
+                        })
+                    } else {
+                        self.alertValidate(message: message, handler: nil)
+                    }
+                })
+            } else {
+                alertValidate(message: "Invalidate email", handler: nil)
+            }
+        }
+    }
+    
+    private func isValidEmailAddress(_ email: String) -> Bool {
+        
+        var returnValue = true
+        let emailRegEx = "[A-Z0-9a-z.-_]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,3}"
+        
+        do {
+            let regex = try NSRegularExpression(pattern: emailRegEx)
+            let nsString = email as NSString
+            let results = regex.matches(in: email, range: NSRange(location: 0, length: nsString.length))
+            
+            if results.count == 0 {
+                returnValue = false
+            }
+            
+        } catch let error as NSError {
+            print("invalid regex: \(error.localizedDescription)")
+            returnValue = false
+        }
+        
+        return  returnValue
+    }
+    
+    private func alertValidate(message: String, handler: ((UIAlertAction) -> Void)?) {
+        let alertController = UIAlertController(title: "Alert", message: message, preferredStyle: UIAlertControllerStyle.alert)
+        let cancelAction = UIAlertAction(title: "I understand", style: UIAlertActionStyle.cancel, handler: handler)
+        alertController.addAction(cancelAction)
+        present(alertController, animated: true, completion: nil)
     }
 }
 

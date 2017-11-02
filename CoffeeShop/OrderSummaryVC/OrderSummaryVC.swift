@@ -9,31 +9,8 @@
 import UIKit
 class OrderSummaryVC: UIViewController {
     
+    // MARK: create variables
     let orderSummaryView = OrderSummaryView()
-    
-    func confirmOrderTapped() {
-        print("confirmOrderTapped")
-    }
-    
-    func cancelOrderTapped() {
-        navigationController?.popViewController(animated: true)
-    }
-    
-    // Left Bar Button Item
-    func leftBarButtonItem() {
-        
-        let leftButton = UIButton(type: .custom)
-        leftButton.setImage(UIImage(named: "back")?.withRenderingMode(.alwaysTemplate), for: UIControlState())
-        leftButton.tintColor = UIColor.lightGray
-        leftButton.frame = CGRect(x: 0, y: 0, width: 20, height: 20)
-        leftButton.addTarget(self, action: #selector(self.leftButtonTapped), for: .touchUpInside)
-        let leftBarButton = UIBarButtonItem(customView: leftButton)
-        self.navigationItem.leftBarButtonItem = leftBarButton
-    }
-    
-    @objc func leftButtonTapped(){
-        navigationController?.popViewController(animated: true)
-    }
     
     //MARK: Lifecycle
     
@@ -61,6 +38,31 @@ class OrderSummaryVC: UIViewController {
         navigationController?.hidesBarsOnSwipe = true
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor:UIColor.gray]
         navigationController?.navigationBar.isTranslucent = true
+    }
+    
+    // MARK: create functions
+    private func confirmOrderTapped() {
+        print("confirmOrderTapped")
+    }
+    
+    private func cancelOrderTapped() {
+        navigationController?.popViewController(animated: true)
+    }
+    
+    // Left Bar Button Item
+    private func leftBarButtonItem() {
+        
+        let leftButton = UIButton(type: .custom)
+        leftButton.setImage(UIImage(named: "back")?.withRenderingMode(.alwaysTemplate), for: UIControlState())
+        leftButton.tintColor = UIColor.lightGray
+        leftButton.frame = CGRect(x: 0, y: 0, width: 20, height: 20)
+        leftButton.addTarget(self, action: #selector(self.leftButtonTapped), for: .touchUpInside)
+        let leftBarButton = UIBarButtonItem(customView: leftButton)
+        self.navigationItem.leftBarButtonItem = leftBarButton
+    }
+    
+    @objc func leftButtonTapped(){ 
+        navigationController?.popViewController(animated: true)
     }
     
 }

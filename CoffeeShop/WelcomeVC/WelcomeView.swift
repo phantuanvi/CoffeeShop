@@ -11,7 +11,7 @@ import Stevia
 
 class WelcomeView: UIView {
     
-    //MARK: create sub views and func
+    //MARK: create variables
     let backgroundView: UIImageView = {
         let imgView = UIImageView()
         imgView.isUserInteractionEnabled = true
@@ -45,6 +45,7 @@ class WelcomeView: UIView {
         return button
     }()
     
+    // MARK: life cycle
     convenience init() {
         self.init(frame: CGRect.zero)
         render()

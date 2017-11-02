@@ -11,6 +11,7 @@ import Stevia
 
 class OrderSummaryTableViewCell: UITableViewCell {
     
+    // MARK: create variables
     lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont(name: "OpenSans", size: 16)
@@ -27,6 +28,7 @@ class OrderSummaryTableViewCell: UITableViewCell {
         return label
     }()
     
+    // MARK: life cycle
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 enum LeftMenu: Int {
     case menu = 0
@@ -20,35 +21,14 @@ protocol LeftMenuProtocol: class {
 
 class SideBarVC: UIViewController, LeftMenuProtocol {
     
-    // MARK: - create sub views and func
+    // MARK: - create variables
     let menuArrays = ["Menu", "Favorites", "Settings"]
-    var isRunOneTime: Bool = true
+    var isMenuBlue: Bool = PTVAuthService.sharedInstance.isMenuBlue!
     
     var menuVC: UIViewController!
     var favoritesVC: UIViewController!
     var settingsVC: UIViewController!
     let sideBarView = SideBarView()
-    
-    func logInTapped() {
-        print("logInTapped")
-        let signInVC = SignInVC()
-        present(signInVC, animated: true, completion: nil)
-    }
-    
-    func registerTapped() {
-        print("registerTapped")
-        let signUpVC = SignUpVC()
-        let navController = UINavigationController(rootViewController: signUpVC)
-        present(navController, animated: true, completion: nil)
-    }
-    
-    func setupViewControllers(){
-        let favoritesVC: FavoritesVC = FavoritesVC()
-        self.favoritesVC = UINavigationController(rootViewController: favoritesVC)
-
-        let settingsVC: SettingsVC = SettingsVC()
-        self.settingsVC = UINavigationController(rootViewController: settingsVC)
-    }
     
     //MARK: Lifecycle
     override func loadView() {
@@ -58,14 +38,20 @@ class SideBarVC: UIViewController, LeftMenuProtocol {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = UIColor.white
+        isMenuBlue = true
         setupViewControllers()
         
         sideBarView.tableView.dataSource = self
         sideBarView.tableView.delegate = self
-        sideBarView.logInButton.tap(logInTapped)
-        sideBarView.registerButton.tap(registerTapped)
+    }
+    
+    // MARK: create functions
+    private func setupViewControllers(){
+        let favoritesVC: FavoritesVC = FavoritesVC()
+        self.favoritesVC = UINavigationController(rootViewController: favoritesVC)
         
+        let settingsVC: SettingsVC = SettingsVC()
+        self.settingsVC = UINavigationController(rootViewController: settingsVC)
     }
     
     func changeViewController(_ menu: LeftMenu) {
@@ -79,7 +65,7 @@ class SideBarVC: UIViewController, LeftMenuProtocol {
 
 extension SideBarVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return menuArrays.count
+        return menuArrays.count + 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -92,14 +78,18 @@ extension SideBarVC: UITableViewDelegate, UITableViewDataSource {
                 cell.selectionStyle = UITableViewCellSelectionStyle.none
                 cell.textLabel?.text = "\(menuArrays[indexPath.row])"
                 cell.textLabel?.textColor = WHITE
-                if (isRunOneTime) {
+                if (isMenuBlue) {
                     cell.textLabel?.textColor = MYGREEN
-                    isRunOneTime = false
+                    isMenuBlue = false
                 }
                 return cell
             }
+        } else {
+            let cell = UITableViewCell()
+            cell.backgroundColor = UIColor.clear
+            cell.selectionStyle = UITableViewCellSelectionStyle.none
+            return cell
         }
-        return UITableViewCell()
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -118,5 +108,44 @@ extension SideBarVC: UITableViewDelegate, UITableViewDataSource {
             print("didDeselectRow \(menu)")
         }
         tableView.cellForRow(at: indexPath)?.textLabel?.textColor = WHITE
+    }
+    
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        let footerView = SideBarTableFooterView()
+        footerView.logOutButton?.tap(logOutTapped)
+        footerView.logInButton?.tap(logInTapped)
+        footerView.registerButton?.tap(registerTapped)
+        return footerView
+    }
+    
+    private func logOutTapped() {
+        print("logout")
+        do {
+            try Auth.auth().signOut()
+            PTVAuthService.sharedInstance.isAuthenticated = false
+            print(Auth.auth())
+        } catch let signOutError as NSError {
+            print ("Error signing out: %@", signOutError)
+        }
+        isMenuBlue = true
+        self.sideBarView.tableView.reloadData()
+        self.sideBarView.tableView.selectRow(at: IndexPath(row: 0, section: 0), animated: true, scrollPosition: UITableViewScrollPosition.none)
+    }
+    
+    private func logInTapped() {
+        print("logInTapped")
+        isMenuBlue = true
+        self.sideBarView.tableView.reloadData()
+        let signInVC = SignInVC()
+        present(signInVC, animated: true, completion: nil)
+    }
+    
+    private func registerTapped() {
+        print("registerTapped")
+        isMenuBlue = true
+        self.sideBarView.tableView.reloadData()
+        let signUpVC = SignUpVC()
+        let navController = UINavigationController(rootViewController: signUpVC)
+        present(navController, animated: true, completion: nil)
     }
 }

@@ -12,7 +12,7 @@ import GoogleSignIn
 
 class SignInView: UIView {
     
-    // MARK: - create sub views and func
+    // MARK: - create sub variables
     let logoView: UIImageView = {
         let imgView = UIImageView()
         imgView.image = UIImage(named: "logo")?.withRenderingMode(.alwaysTemplate)
@@ -25,11 +25,11 @@ class SignInView: UIView {
         let textField = UITextField()
         textField.placeholder = "Email"
         textField.font = UIFont(name: "OpenSans", size: 17)
-        textField.borderStyle = UITextBorderStyle.line
-        textField.layer.borderColor = UIColor(red: 46/225, green: 204/225, blue: 113/225, alpha: 1).cgColor
+        textField.layer.borderColor = UIColor.lightGray.cgColor
+        textField.layer.borderWidth = 1.0
         textField.autocorrectionType = UITextAutocorrectionType.no
         textField.enablesReturnKeyAutomatically = true
-        textField.keyboardType = UIKeyboardType.default
+        textField.keyboardType = UIKeyboardType.emailAddress
         textField.returnKeyType = UIReturnKeyType.done
         textField.clearButtonMode = UITextFieldViewMode.whileEditing;
         textField.textAlignment = .center
@@ -40,8 +40,8 @@ class SignInView: UIView {
         let textField = UITextField()
         textField.placeholder = "Password"
         textField.font = UIFont(name: "OpenSans", size: 17)
-        textField.borderStyle = UITextBorderStyle.line
         textField.layer.borderColor = UIColor.lightGray.cgColor
+        textField.layer.borderWidth = 1.0
         textField.autocorrectionType = UITextAutocorrectionType.no
         textField.enablesReturnKeyAutomatically = true
         textField.keyboardType = UIKeyboardType.default
@@ -109,6 +109,7 @@ class SignInView: UIView {
         return googleButton
     }()
     
+    // MARK: - life cycle
     convenience init() {
         self.init(frame: CGRect.zero)
         

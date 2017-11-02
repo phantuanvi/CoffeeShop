@@ -11,50 +11,10 @@ import ZHDropDownMenu
 
 class ProductDetailVC: UIViewController {
     
+    // MARK: create variables
     let pickerValue = ["1", "2", "3", "4", "5"]
     
     let productDetailView = ProductDetailView()
-    
-    func placeOrderTapped() {
-        print("placeOrderTapped")
-        let orderSummaryVC = OrderSummaryVC()
-        navigationController?.pushViewController(orderSummaryVC, animated: true)
-    }
-    
-    func addToFavoriteTapped() {
-        print("addToFavoriteTapped")
-    }
-    
-    // Left Bar Button Item
-    func leftBarButtonItem() {
-        
-        let leftButton = UIButton(type: .custom)
-        leftButton.setImage(UIImage(named: "back")?.withRenderingMode(.alwaysTemplate), for: UIControlState())
-        leftButton.tintColor = UIColor.lightGray
-        leftButton.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
-        leftButton.addTarget(self, action: #selector(self.leftButtonTapped), for: .touchUpInside)
-        let leftBarButton = UIBarButtonItem(customView: leftButton)
-        self.navigationItem.leftBarButtonItem = leftBarButton
-    }
-    
-    @objc func leftButtonTapped(){
-        self.navigationController?.popViewController(animated: true)
-    }
-    
-    // Right Bar Button Item
-    func rightBarButtonItem() {
-        
-        let rightButton = UIButton(type: .custom)
-        rightButton.setImage(UIImage(named: "favorite")?.withRenderingMode(.alwaysTemplate), for: UIControlState())
-        rightButton.tintColor = UIColor.red
-        rightButton.frame = CGRect(x: 0, y: 0, width: 20, height: 20)
-        rightButton.addTarget(self, action: #selector(self.leftButtonTapped), for: .touchUpInside)
-        let rightBarButton = UIBarButtonItem(customView: rightButton)
-        self.navigationItem.rightBarButtonItem = rightBarButton
-    }
-    func rightButtonTapped(){
-        dismiss(animated: true, completion: nil)
-    }
     
     //MARK: Lifecycle
     override func loadView() {
@@ -83,6 +43,49 @@ class ProductDetailVC: UIViewController {
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor:UIColor.gray]
         navigationController?.navigationBar.isTranslucent = true
         setStatusBarColor(UIBarStyle.default)
+    }
+    
+    // MARK: create functions
+    private func placeOrderTapped() {
+        print("placeOrderTapped")
+        let orderSummaryVC = OrderSummaryVC()
+        navigationController?.pushViewController(orderSummaryVC, animated: true)
+    }
+    
+    private func addToFavoriteTapped() {
+        print("addToFavoriteTapped")
+    }
+    
+    @objc func leftButtonTapped(){
+        self.navigationController?.popViewController(animated: true)
+    }
+    
+    @objc func rightButtonTapped(){
+        dismiss(animated: true, completion: nil)
+    }
+    
+    // Left Bar Button Item
+    private func leftBarButtonItem() {
+        
+        let leftButton = UIButton(type: .custom)
+        leftButton.setImage(UIImage(named: "back")?.withRenderingMode(.alwaysTemplate), for: UIControlState())
+        leftButton.tintColor = UIColor.lightGray
+        leftButton.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
+        leftButton.addTarget(self, action: #selector(self.leftButtonTapped), for: .touchUpInside)
+        let leftBarButton = UIBarButtonItem(customView: leftButton)
+        self.navigationItem.leftBarButtonItem = leftBarButton
+    }
+    
+    // Right Bar Button Item
+    private func rightBarButtonItem() {
+        
+        let rightButton = UIButton(type: .custom)
+        rightButton.setImage(UIImage(named: "favorite")?.withRenderingMode(.alwaysTemplate), for: UIControlState())
+        rightButton.tintColor = UIColor.red
+        rightButton.frame = CGRect(x: 0, y: 0, width: 20, height: 20)
+        rightButton.addTarget(self, action: #selector(self.rightButtonTapped), for: .touchUpInside)
+        let rightBarButton = UIBarButtonItem(customView: rightButton)
+        self.navigationItem.rightBarButtonItem = rightBarButton
     }
 }
 
