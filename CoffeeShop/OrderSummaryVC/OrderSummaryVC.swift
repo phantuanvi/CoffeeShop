@@ -46,7 +46,7 @@ class OrderSummaryVC: UIViewController {
     }
     
     private func cancelOrderTapped() {
-        navigationController?.popViewController(animated: true)
+        navigationController?.popToRootViewController(animated: true)
     }
     
     // Left Bar Button Item

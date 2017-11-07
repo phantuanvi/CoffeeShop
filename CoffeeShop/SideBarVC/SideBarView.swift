@@ -27,6 +27,7 @@ class SideBarView: UIView {
         tableView.backgroundColor = UIColor.clear
         tableView.separatorColor = UIColor.clear
         tableView.allowsSelection = true
+        tableView.isScrollEnabled = false
         return tableView
     }()
     
@@ -45,7 +46,7 @@ class SideBarView: UIView {
         
         backgroundView.fillContainer()
         
-        tableView.Top == self.CenterY
+        tableView.Top == self.CenterY - 100
         tableView.Left == self.Left
         tableView.Right == self.Right
         tableView.Bottom == self.Bottom

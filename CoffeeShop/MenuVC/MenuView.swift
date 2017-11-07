@@ -15,7 +15,6 @@ class MenuView: UIView {
     let tableView: UITableView = {
         let tableView = UITableView()
         tableView.frame = CGRect.zero
-        tableView.register(MenuTableViewCell.self, forCellReuseIdentifier: "MenuVCCell")
         tableView.alwaysBounceVertical = false
         tableView.backgroundColor = UIColor.clear
         tableView.separatorColor = UIColor.white

@@ -13,6 +13,9 @@ target 'CoffeeShop' do
   pod 'FBSDKLoginKit'
   pod 'Firebase/Core'
   pod 'Firebase/Auth'
+  pod 'Firebase/Database'
   pod 'GoogleSignIn'
+  pod 'Kingfisher', '~> 4.0'
+  pod 'SVProgressHUD'
 
 end

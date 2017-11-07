@@ -22,7 +22,7 @@ protocol LeftMenuProtocol: class {
 class SideBarVC: UIViewController, LeftMenuProtocol {
     
     // MARK: - create variables
-    let menuArrays = ["Menu", "Favorites", "Settings"]
+    let menusArray = ["Menu", "Favorites", "Settings"]
     var isMenuBlue: Bool = PTVAuthService.sharedInstance.isMenuBlue!
     
     var menuVC: UIViewController!
@@ -65,7 +65,7 @@ class SideBarVC: UIViewController, LeftMenuProtocol {
 
 extension SideBarVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return menuArrays.count + 1
+        return menusArray.count + 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -76,7 +76,7 @@ extension SideBarVC: UITableViewDelegate, UITableViewDataSource {
                 let cell = UITableViewCell(style: UITableViewCellStyle.default, reuseIdentifier: "SideBarCell")
                 cell.backgroundColor = UIColor.clear
                 cell.selectionStyle = UITableViewCellSelectionStyle.none
-                cell.textLabel?.text = "\(menuArrays[indexPath.row])"
+                cell.textLabel?.text = "\(menusArray[indexPath.row])"
                 cell.textLabel?.textColor = WHITE
                 if (isMenuBlue) {
                     cell.textLabel?.textColor = MYGREEN
@@ -108,6 +108,18 @@ extension SideBarVC: UITableViewDelegate, UITableViewDataSource {
             print("didDeselectRow \(menu)")
         }
         tableView.cellForRow(at: indexPath)?.textLabel?.textColor = WHITE
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if indexPath.row == menusArray.count {
+            return self.sideBarView.tableView.bounds.size.height - 150
+        } else {
+            return 50
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 50
     }
     
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {

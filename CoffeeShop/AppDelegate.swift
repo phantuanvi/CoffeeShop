@@ -21,9 +21,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
         FirebaseApp.configure()
-        
+        FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
         GIDSignIn.sharedInstance().clientID = FirebaseApp.app()?.options.clientID
         
         window = UIWindow(frame: UIScreen.main.bounds)
@@ -35,7 +34,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 let welcomeVC = WelcomeVC()
                 self.viewController = welcomeVC
             } else {
-                
                 StartApp.shared.start { (viewController) in
                     self.viewController = viewController
                 }

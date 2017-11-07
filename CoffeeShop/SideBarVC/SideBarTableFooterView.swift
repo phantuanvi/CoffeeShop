@@ -63,7 +63,6 @@ class SideBarTableFooterView: UIView {
         if PTVAuthService.sharedInstance.isAuthenticated! {
             sv(logOutButton!)
             
-            logOutButton!.height(50)
             logOutButton!.Top == self.Top
             logOutButton!.Left == self.Left
             logOutButton!.Right == self.Right
@@ -74,17 +73,15 @@ class SideBarTableFooterView: UIView {
                 registerButton!
             )
             
-            logInButton?.height(50)
             logInButton!.Left == self.Left
             logInButton!.Top == self.Top
             logInButton!.Right == registerButton!.Left - 2
-            logInButton!.Bottom == self.Top
+            logInButton!.Bottom == self.Bottom
             equalWidths(logInButton!, registerButton!)
             
             registerButton!.Top == self.Top
             registerButton!.Right == self.Right
-            registerButton!.Bottom == self.Top
-            registerButton?.height(50)
+            registerButton!.Bottom == self.Bottom
         }
         
     }

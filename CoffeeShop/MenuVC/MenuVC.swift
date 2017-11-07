@@ -7,23 +7,14 @@
 //
 
 import UIKit
-
-struct MenuModel {
-    let menuTitle: String
-    let menuDetail: String
-    let menuImage: String
-    
-    init(title: String, detail: String, image: String) {
-        menuTitle = title
-        menuDetail = detail
-        menuImage = image
-    }
-}
+import Kingfisher
+import SVProgressHUD
 
 class MenuVC: UIViewController {
     
     // MARK: - create variables
-    var menuArrays: [MenuModel] = []
+    var menusArray: [Menu] = []
+    var menusGetFromFirebase: Array<[String: String]>!
     var titleNav: String = "Menu"
     
     let menuView = MenuView()
@@ -35,50 +26,67 @@ class MenuVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        SVProgressHUD.show()
+        let group = DispatchGroup()
         
-        setupModel()
-        setNavigationBarItem()
-        navigationController?.hidesBarsOnSwipe = true
-        navigationItem.title = titleNav
-        
-        view.backgroundColor = UIColor.black
-        menuView.tableView.delegate = self
-        menuView.tableView.dataSource = self
+        group.enter()
+        PTVDataService.sharedInstance.getMenusFromFirebase(complete: { (success) in
+            if success {
+                let data = PTVDataService.sharedInstance.menusFromFirebase
+                self.menusArray = self.parseData(data: data)
+                group.leave()
+            }
+        })
+        group.notify(queue: .main) {
+            print("menusArray: ", self.menusArray)
+            self.menuView.tableView.register(MenuTableViewCell.self, forCellReuseIdentifier: "MenuVCCell")
+            self.setNavigationBarItem()
+            self.navigationController?.hidesBarsOnSwipe = true
+            self.navigationItem.title = self.titleNav
+            
+            self.view.backgroundColor = UIColor.clear
+            
+            self.menuView.tableView.delegate = self
+            self.menuView.tableView.dataSource = self
+            SVProgressHUD.dismiss(withDelay: TimeInterval(1), completion: {
+                self.menuView.tableView.reloadData()
+            })
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
         setStatusBarColor(UIBarStyle.blackTranslucent)
     }
     
-    // MARK: create functions
-    func setupModel() {
-        let menu1 = MenuModel(title: "Coffee", detail: "Freshly brewed coffee", image: "menuCoffee.png")
-        menuArrays.append(menu1)
-        let menu2 = MenuModel(title: "Breakfast", detail: "Perfectly baked & served warm", image: "menuBreakfast.png")
-        menuArrays.append(menu2)
-        let menu3 = MenuModel(title: "Munchies", detail: "Perfectly baked & served warm", image: "menuMunchies.png")
-        menuArrays.append(menu3)
-        let menu4 = MenuModel(title: "Sandwiches", detail: "Fresh, healthy and tasty", image: "menuSandwiches.png")
-        menuArrays.append(menu4)
-        let menu5 = MenuModel(title: "Specialty Drinks", detail: "Special drinks for every taste", image: "menuSpecialtyDrinks.png")
-        menuArrays.append(menu5)
+    func parseData(data: [[String: String]]?) -> [Menu]{
+        var menus = [Menu]()
+        if let data = data {
+            for menu in data {
+                guard let title = menu["title"] else { return menus }
+                guard let description = menu["description"] else { return menus }
+                guard let urlPicture = menu["urlPicture"] else { return menus }
+                let m = Menu(title: title, description: description, urlPicture: urlPicture)
+                menus.append(m)
+            }
+        }
+        return menus
     }
-    
 }
 
 extension MenuVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return menuArrays.count
+        print("menusArray.count: ", self.menusArray.count)
+        return self.menusArray.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "MenuVCCell", for: indexPath) as? MenuTableViewCell
         
         if let cell = cell {
-            cell.bgView.image = UIImage(named: menuArrays[indexPath.row].menuImage)
-            cell.titleLabel.text = menuArrays[indexPath.row].menuTitle
-            cell.detailLabel.text = menuArrays[indexPath.row].menuDetail
-            
+            let resource: ImageResource = ImageResource(downloadURL: URL(string: menusArray[indexPath.row].urlPicture)!)
+            cell.bgView.kf.setImage(with: resource)
+            cell.titleLabel.text = menusArray[indexPath.row].title
+            cell.detailLabel.text = menusArray[indexPath.row].description
             return cell
         }
         
@@ -92,7 +100,7 @@ extension MenuVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         let detailVC = MenuDetailVC()
-        detailVC.titleNav = menuArrays[indexPath.row].menuTitle
+        detailVC.titleNav = menusArray[indexPath.row].title
         self.navigationController?.pushViewController(detailVC, animated: true)
     }
 }

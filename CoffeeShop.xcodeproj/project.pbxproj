@@ -51,6 +51,11 @@
 		0C88FC6C1FA5C0CC00B16394 /* OrderSummaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C88FC6B1FA5C0CC00B16394 /* OrderSummaryView.swift */; };
 		0C88FC6E1FA5C0F900B16394 /* OrderSummaryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C88FC6D1FA5C0F900B16394 /* OrderSummaryTableViewCell.swift */; };
 		0C88FC791FA5F30B00B16394 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0C88FC781FA5F30B00B16394 /* GoogleService-Info.plist */; };
+		0CB87CA51FAABAC4008A24C2 /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB87CA41FAABAC4008A24C2 /* Product.swift */; };
+		0CB87CA71FAABB8C008A24C2 /* OrderProduct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB87CA61FAABB8C008A24C2 /* OrderProduct.swift */; };
+		0CB87CA91FAABE08008A24C2 /* UserRole.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB87CA81FAABE08008A24C2 /* UserRole.swift */; };
+		0CE85E761FAAD50800FDE973 /* Menu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CE85E751FAAD50800FDE973 /* Menu.swift */; };
+		0CE85E7A1FAB417400FDE973 /* PTVDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CE85E791FAB417400FDE973 /* PTVDataService.swift */; };
 		13F511ABC424CA1045041081 /* Pods_CoffeeShop.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15294FB2A44F7A7FC1BCCFAD /* Pods_CoffeeShop.framework */; };
 /* End PBXBuildFile section */
 
@@ -116,6 +121,11 @@
 		0C88FC6B1FA5C0CC00B16394 /* OrderSummaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderSummaryView.swift; sourceTree = "<group>"; };
 		0C88FC6D1FA5C0F900B16394 /* OrderSummaryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderSummaryTableViewCell.swift; sourceTree = "<group>"; };
 		0C88FC781FA5F30B00B16394 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		0CB87CA41FAABAC4008A24C2 /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
+		0CB87CA61FAABB8C008A24C2 /* OrderProduct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderProduct.swift; sourceTree = "<group>"; };
+		0CB87CA81FAABE08008A24C2 /* UserRole.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRole.swift; sourceTree = "<group>"; };
+		0CE85E751FAAD50800FDE973 /* Menu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Menu.swift; sourceTree = "<group>"; };
+		0CE85E791FAB417400FDE973 /* PTVDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PTVDataService.swift; sourceTree = "<group>"; };
 		15294FB2A44F7A7FC1BCCFAD /* Pods_CoffeeShop.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CoffeeShop.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2A1C5B3D824E20FB8713E6EA /* Pods-CoffeeShop.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CoffeeShop.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CoffeeShop/Pods-CoffeeShop.debug.xcconfig"; sourceTree = "<group>"; };
 		2B7DB005AA651FE12E580456 /* Pods-CoffeeShop.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CoffeeShop.release.xcconfig"; path = "Pods/Target Support Files/Pods-CoffeeShop/Pods-CoffeeShop.release.xcconfig"; sourceTree = "<group>"; };
@@ -153,6 +163,7 @@
 			isa = PBXGroup;
 			children = (
 				0C4B37691FA8787C0067A299 /* PTVAuthService.swift */,
+				0CE85E791FAB417400FDE973 /* PTVDataService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -197,6 +208,7 @@
 		0C78AA891FA4D46400940B11 /* CoffeeShop */ = {
 			isa = PBXGroup;
 			children = (
+				0CB87CA31FAABA9C008A24C2 /* Model */,
 				0C78AAE41FA4F93700940B11 /* FavoritesVC */,
 				0C56E1831FA6393D001ED8B4 /* ForgotPasswordVC */,
 				0C78AAF11FA5017000940B11 /* MenuDetailVC */,
@@ -327,6 +339,17 @@
 				0C88FC6B1FA5C0CC00B16394 /* OrderSummaryView.swift */,
 			);
 			path = OrderSummaryVC;
+			sourceTree = "<group>";
+		};
+		0CB87CA31FAABA9C008A24C2 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				0CB87CA41FAABAC4008A24C2 /* Product.swift */,
+				0CB87CA61FAABB8C008A24C2 /* OrderProduct.swift */,
+				0CB87CA81FAABE08008A24C2 /* UserRole.swift */,
+				0CE85E751FAAD50800FDE973 /* Menu.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		45B0668585D808EACB47E321 /* Pods */ = {
@@ -498,9 +521,12 @@
 				"${BUILT_PRODUCTS_DIR}/GTMOAuth2/GTMOAuth2.framework",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
 				"${BUILT_PRODUCTS_DIR}/QuickTableViewController/QuickTableViewController.framework",
+				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/SteviaLayout/Stevia.framework",
 				"${BUILT_PRODUCTS_DIR}/ZHDropDownMenu/ZHDropDownMenu.framework",
+				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -511,9 +537,12 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMOAuth2.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/QuickTableViewController.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Stevia.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ZHDropDownMenu.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -569,6 +598,8 @@
 				0C78AAD01FA4E94900940B11 /* SignUpVC.swift in Sources */,
 				0C78AAC91FA4DAF700940B11 /* Extensions.swift in Sources */,
 				0C78AAD31FA4EB8E00940B11 /* SignInVC.swift in Sources */,
+				0CB87CA51FAABAC4008A24C2 /* Product.swift in Sources */,
+				0CB87CA91FAABE08008A24C2 /* UserRole.swift in Sources */,
 				0C78AAF01FA4FB2A00940B11 /* FavoriteCollectionViewCell.swift in Sources */,
 				0C78AAC31FA4DAA100940B11 /* WelcomeVC.swift in Sources */,
 				0C78AADC1FA4EFC400940B11 /* SideBarVC.swift in Sources */,
@@ -580,6 +611,7 @@
 				0C78AADA1FA4EFAC00940B11 /* SideBarView.swift in Sources */,
 				0C88FC671FA5AFB600B16394 /* ProductDetailVC.swift in Sources */,
 				0C223A281FA586F800EDBBCE /* MenuDetailView.swift in Sources */,
+				0CE85E7A1FAB417400FDE973 /* PTVDataService.swift in Sources */,
 				0C56E1871FA6399A001ED8B4 /* ForgotPasswordVC.swift in Sources */,
 				0C78AAC81FA4DAF700940B11 /* Constants.swift in Sources */,
 				0C88FC6A1FA5C0A900B16394 /* OrderSummaryVC.swift in Sources */,
@@ -589,7 +621,9 @@
 				0C78AA8B1FA4D46400940B11 /* AppDelegate.swift in Sources */,
 				0C78AACE1FA4E91F00940B11 /* SignUpView.swift in Sources */,
 				0C78AAF51FA501E900940B11 /* MenuDetailTableViewCell.swift in Sources */,
+				0CE85E761FAAD50800FDE973 /* Menu.swift in Sources */,
 				0C4B376D1FA887750067A299 /* StartApp.swift in Sources */,
+				0CB87CA71FAABB8C008A24C2 /* OrderProduct.swift in Sources */,
 				0C78AABF1FA4DA7E00940B11 /* WelcomeView.swift in Sources */,
 				0C88FC651FA5AF9F00B16394 /* ProductDetailView.swift in Sources */,
 				0C78AAE31FA4F0CE00940B11 /* MenuTableViewCell.swift in Sources */,
@@ -694,7 +728,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -745,7 +779,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";

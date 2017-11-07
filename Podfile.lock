@@ -15,6 +15,9 @@ PODS:
   - Firebase/Core (4.3.0):
     - FirebaseAnalytics (= 4.0.4)
     - FirebaseCore (= 4.0.8)
+  - Firebase/Database (4.3.0):
+    - Firebase/Core
+    - FirebaseDatabase (= 4.1.0)
   - FirebaseAnalytics (4.0.4):
     - FirebaseCore (~> 4.0)
     - FirebaseInstanceID (~> 2.0)
@@ -27,6 +30,10 @@ PODS:
   - FirebaseCore (4.0.8):
     - GoogleToolboxForMac/NSData+zlib (~> 2.1)
     - nanopb (~> 0.3)
+  - FirebaseDatabase (4.1.0):
+    - FirebaseAnalytics (~> 4.0)
+    - FirebaseCore (~> 4.0)
+    - leveldb-library (~> 1.18)
   - FirebaseInstanceID (2.0.4)
   - GoogleSignIn (4.1.0):
     - GoogleToolboxForMac/NSDictionary+URLArguments (~> 2.1)
@@ -50,6 +57,8 @@ PODS:
   - GTMSessionFetcher/Core (1.1.12)
   - GTMSessionFetcher/Full (1.1.12):
     - GTMSessionFetcher/Core (= 1.1.12)
+  - Kingfisher (4.1.0)
+  - leveldb-library (1.18.3)
   - nanopb (0.3.8):
     - nanopb/decode (= 0.3.8)
     - nanopb/encode (= 0.3.8)
@@ -57,6 +66,7 @@ PODS:
   - nanopb/encode (0.3.8)
   - QuickTableViewController (0.7.0)
   - SteviaLayout (4.0.0)
+  - SVProgressHUD (2.2.1)
   - ZHDropDownMenu (1.0.0)
 
 DEPENDENCIES:
@@ -64,9 +74,12 @@ DEPENDENCIES:
   - FBSDKLoginKit
   - Firebase/Auth
   - Firebase/Core
+  - Firebase/Database
   - GoogleSignIn
+  - Kingfisher (~> 4.0)
   - QuickTableViewController
   - SteviaLayout
+  - SVProgressHUD
   - ZHDropDownMenu
 
 SPEC CHECKSUMS:
@@ -77,16 +90,20 @@ SPEC CHECKSUMS:
   FirebaseAnalytics: 722b53c7b32bfc7806b06e0093a2f5180d4f2c5a
   FirebaseAuth: d7f047fbeab98062b98ea933b8d934e0fb1190e2
   FirebaseCore: 69b1a5ac5f857ba6d5fd9d5fe794f4786dd5e579
+  FirebaseDatabase: 607284a103e961d7f5863ee603cab5e85f443bd6
   FirebaseInstanceID: 70c2b877e9338971b2429ea5a4293df6961aa44e
   GoogleSignIn: 8c599fc10d25b2af86a3f82fd9631e863f2b1400
   GoogleToolboxForMac: 2501e2ad72a52eb3dfe7bd9aee7dad11b858bd20
   GTMOAuth2: be83fd28d63ae3087e7d351b1f39c1a7e24ab6e7
   GTMSessionFetcher: ebaa1f79a5366922c1735f1566901f50beba23b7
+  Kingfisher: f14df8cbe576bf55f211fa589e9869bceb4ea87d
+  leveldb-library: 10fb39c39e243db4af1828441162405bbcec1404
   nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
   QuickTableViewController: 1f73beefc1055cc142ee2cda792dc008b22e8502
   SteviaLayout: 2d6b6d7e9554fa7b2c7c2aba12337b23cf897123
+  SVProgressHUD: db27c54e6e18bc903341661fc9feb55e04905cc4
   ZHDropDownMenu: aa2917b07820b9eba3dc98066f85257017821b65
 
-PODFILE CHECKSUM: 19b9ee11ab1169a1f8d8f226e35059c4d9f0df84
+PODFILE CHECKSUM: f17190023f2ea3d5a61ec68e32b447861fd70109
 
 COCOAPODS: 1.3.1
