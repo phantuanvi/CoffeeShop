@@ -8,13 +8,16 @@
 
 import UIKit
 import Stevia
+import SVProgressHUD
+import Kingfisher
 
 private let kTableHeaderHeight: CGFloat = 200.0
 
 class MenuDetailVC: UIViewController {
     
     // MARK: create variables
-    let coffeeMenus = ["Choco Frappe", "Caramel Frappe", "Kick Frappe", "Cappuccino"]
+
+    var productsArray = [Product]()
     
     var headerView: UIView!
     let menuDetailView = MenuDetailView()
@@ -28,6 +31,20 @@ class MenuDetailVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        SVProgressHUD.show()
+        let group = DispatchGroup()
+        group.enter()
+        PTVDataService.sharedInstance.getProductsFromFirebase { (success) in
+            let data = PTVDataService.sharedInstance.productsFromFirebase
+            self.productsArray = self.parseData(data: data)
+            self.productsArray = self.productsArray + self.productsArray
+            group.leave()
+        }
+        group.notify(queue: DispatchQueue.main) {
+            self.menuDetailView.tableView.reloadData()
+            SVProgressHUD.dismiss()
+        }
         
         navigationItem.title = titleNav
         
@@ -68,6 +85,24 @@ class MenuDetailVC: UIViewController {
     }
     
     // MARK: create functions
+    func parseData(data: [[String: String]]?) -> [Product]{
+        var products = [Product]()
+        if let data = data {
+            for product in data {
+                guard let menu = product["menu"] else { return products }
+                guard let name = product["name"] else { return products }
+                guard let description = product["detail"] else { return products }
+                guard let cost = product["cost"] else { return products }
+                guard let urlPicture = product["urlPicture"] else { return products }
+                let p = Product(name: name, description: description, newCost: Int(cost) ?? 0, oldCost: nil, urlPicture: urlPicture)
+                if (menu == titleNav) {
+                    products.append(p)
+                }
+            }
+        }
+        return products
+    }
+    
     // Left Bar Button Item
     private func leftBarButtonItem() {
         
@@ -101,12 +136,24 @@ extension MenuDetailVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 100
+        return productsArray.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "menuDetailTVCell", for: indexPath) as! MenuDetailTableViewCell
         
+        cell.titleProductLabel.text = productsArray[indexPath.row].name
+        cell.detailProductLabel.text = productsArray[indexPath.row].description
+        let cost = "$\(productsArray[indexPath.row].newCost)"
+        cell.costProductLabel.text = cost
+        
+        let resource: ImageResource = ImageResource(downloadURL: URL(string: productsArray[indexPath.row].urlPicture!)!)
+        cell.productImageView.kf.setImage(with: resource)
+        
+        cell.tapFavoriteAction = { cell in
+            cell.favoriteIcon.image = cell.favoriteIcon.image?.withRenderingMode(UIImageRenderingMode.alwaysTemplate)
+            cell.favoriteIcon.tintColor = (cell.favoriteIcon.tintColor == .red) ? .lightGray : .red
+        }
         
         return cell
     }

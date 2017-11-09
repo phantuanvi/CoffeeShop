@@ -38,7 +38,6 @@ class MenuVC: UIViewController {
             }
         })
         group.notify(queue: .main) {
-            print("menusArray: ", self.menusArray)
             self.menuView.tableView.register(MenuTableViewCell.self, forCellReuseIdentifier: "MenuVCCell")
             self.setNavigationBarItem()
             self.navigationController?.hidesBarsOnSwipe = true

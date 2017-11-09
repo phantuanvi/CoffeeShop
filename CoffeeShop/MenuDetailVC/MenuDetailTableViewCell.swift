@@ -15,41 +15,37 @@ class MenuDetailTableViewCell: UITableViewCell {
     let productImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
-        imageView.image = UIImage(named: "caramelFrappe")
         return imageView
     }()
     lazy var titleProductLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont(name: "OpenSans-Semibold", size: 16)
         label.textColor = .black
-        label.text = "Caramel Frappe"
         return label
     }()
     lazy var detailProductLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont(name: "OpenSansLight-Italic", size: 13)
         label.textColor = .darkGray
-        label.text = "Decaf Colombia"
         return label
     }()
     lazy var costProductLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont(name: "OpenSans-Semibold", size: 14)
         label.textColor = .black
-        label.text = "$7.85"
         return label
     }()
     lazy var favoriteCountLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont(name: "OpenSans", size: 14)
         label.textColor = .darkGray
-        label.text = "3.456"
         return label
     }()
     
     lazy var favoriteIcon: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(named: "favorite")
+        imageView.isUserInteractionEnabled = true
         return imageView
     }()
     
@@ -86,11 +82,20 @@ class MenuDetailTableViewCell: UITableViewCell {
         favoriteCountLabel.Left == favoriteIcon.Right + 10
         
         favoriteIcon.CenterY == costProductLabel.CenterY
-        favoriteIcon.width(15).height(15)
+        favoriteIcon.width(20).height(20)
+        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(favoriteTapped))
+        favoriteIcon.addGestureRecognizer(tap)
     }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
     
+    // MARK: create functions
+    @objc func favoriteTapped() {
+        tapFavoriteAction?(self)
+    }
+    
+    var tapFavoriteAction: ((MenuDetailTableViewCell) -> Void)?
 }

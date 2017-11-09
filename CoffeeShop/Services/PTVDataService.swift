@@ -13,12 +13,12 @@ class PTVDataService {
     static let sharedInstance = PTVDataService()
     
     var menusFromFirebase: [[String: String]]?
+    var productsFromFirebase: [[String: String]]?
     var detailMenus = [Product]()
     var favoriteProducts = [Product]()
     var orderProducts = [OrderProduct]()
     
     func getMenusFromFirebase(complete: @escaping (Bool) -> ()) {
-        print("getMenusFromFirebase: start")
         Database.database().reference().child("menus").observeSingleEvent(of: DataEventType.value, with: { (snapshot) in
             // get menu value
             if snapshot.exists() {
@@ -28,6 +28,18 @@ class PTVDataService {
         }) { (error) in
             print(error.localizedDescription)
         }
-        print("getMenusFromFirebase: done")
     }
+    
+    func getProductsFromFirebase(complete: @escaping (Bool) -> ()) {
+        Database.database().reference().child("products").observeSingleEvent(of: DataEventType.value, with: { (snapshot) in
+            // get product value
+            if snapshot.exists() {
+                self.productsFromFirebase = snapshot.value as? [[String: String]]
+                complete(true)
+            }
+        }) { (error) in
+            print(error.localizedDescription)
+        }
+    }
+    
 }
