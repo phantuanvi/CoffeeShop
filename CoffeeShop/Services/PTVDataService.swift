@@ -14,7 +14,6 @@ class PTVDataService {
     
     var menusFromFirebase: [[String: String]]?
     var productsFromFirebase: [[String: String]]?
-    var detailMenus = [Product]()
     var favoriteProducts = [Product]()
     var orderProducts = [OrderProduct]()
     

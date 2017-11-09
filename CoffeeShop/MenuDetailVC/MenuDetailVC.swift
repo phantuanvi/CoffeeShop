@@ -15,7 +15,7 @@ private let kTableHeaderHeight: CGFloat = 200.0
 
 class MenuDetailVC: UIViewController {
     
-    // MARK: create variables
+    // MARK: create variabvar
 
     var productsArray = [Product]()
     
@@ -94,7 +94,7 @@ class MenuDetailVC: UIViewController {
                 guard let description = product["detail"] else { return products }
                 guard let cost = product["cost"] else { return products }
                 guard let urlPicture = product["urlPicture"] else { return products }
-                let p = Product(name: name, description: description, newCost: Int(cost) ?? 0, oldCost: nil, urlPicture: urlPicture)
+                let p = Product(name: name, description: description, newCost: Int(cost) ?? 0, oldCost: nil, urlPicture: urlPicture, isFavorite: false)
                 if (menu == titleNav) {
                     products.append(p)
                 }
@@ -152,7 +152,15 @@ extension MenuDetailVC: UITableViewDelegate, UITableViewDataSource {
         
         cell.tapFavoriteAction = { cell in
             cell.favoriteIcon.image = cell.favoriteIcon.image?.withRenderingMode(UIImageRenderingMode.alwaysTemplate)
-            cell.favoriteIcon.tintColor = (cell.favoriteIcon.tintColor == .red) ? .lightGray : .red
+            if (cell.favoriteIcon.tintColor == .red) {
+                cell.favoriteIcon.tintColor = .lightGray
+                self.productsArray[indexPath.row].isFavorite = false
+                PTVDataService.sharedInstance.favoriteProducts.removeLast()
+            } else {
+                cell.favoriteIcon.tintColor = .red
+                self.productsArray[indexPath.row].isFavorite = true
+                PTVDataService.sharedInstance.favoriteProducts.append(self.productsArray[indexPath.row])
+            }
         }
         
         return cell
@@ -161,6 +169,7 @@ extension MenuDetailVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         let productDetailVC = ProductDetailVC()
+        productDetailVC.product = productsArray[indexPath.row]
         self.navigationController?.pushViewController(productDetailVC, animated: true)
     }
     

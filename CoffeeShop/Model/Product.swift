@@ -14,4 +14,5 @@ struct Product {
     let newCost: Int
     let oldCost: Int?
     let urlPicture: String?
+    var isFavorite: Bool = false
 }

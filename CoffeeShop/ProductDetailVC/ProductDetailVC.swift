@@ -8,11 +8,13 @@
 
 import UIKit
 import ZHDropDownMenu
+import Kingfisher
 
 class ProductDetailVC: UIViewController {
     
     // MARK: create variables
     let pickerValue = ["1", "2", "3", "4", "5"]
+    var product: Product? = nil
     
     let productDetailView = ProductDetailView()
     
@@ -30,11 +32,15 @@ class ProductDetailVC: UIViewController {
         navigationItem.title = "ChocoLate Muffin"
         
         leftBarButtonItem()
-        rightBarButtonItem()
         
         productDetailView.quantityMenu.delegate = self
         productDetailView.placeOrderButton.tap(placeOrderTapped)
         productDetailView.addToFavoriteButton.tap(addToFavoriteTapped)
+        
+        let resource: ImageResource = ImageResource(downloadURL: URL(string: self.product!.urlPicture!)!)
+        productDetailView.productImageView.kf.setImage(with: resource)
+        productDetailView.descriptionTextView.text = product?.description
+        productDetailView.costLabel.text = "$\(product!.newCost)"
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -53,15 +59,23 @@ class ProductDetailVC: UIViewController {
     }
     
     private func addToFavoriteTapped() {
-        print("addToFavoriteTapped")
+        print("add to favorite")
+        var  message: String = ""
+        if !product!.isFavorite {
+            product!.isFavorite = true
+            PTVDataService.sharedInstance.favoriteProducts.append(product!)
+            message = "Add to favorite success"
+        } else {
+            message = "Product was favorited"
+        }
+        let alertController = UIAlertController(title: "Alert", message: message, preferredStyle: UIAlertControllerStyle.alert)
+        let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil)
+        alertController.addAction(okAction)
+        present(alertController, animated: true, completion: nil)
     }
     
     @objc func leftButtonTapped(){
         self.navigationController?.popViewController(animated: true)
-    }
-    
-    @objc func rightButtonTapped(){
-        dismiss(animated: true, completion: nil)
     }
     
     // Left Bar Button Item
@@ -74,18 +88,6 @@ class ProductDetailVC: UIViewController {
         leftButton.addTarget(self, action: #selector(self.leftButtonTapped), for: .touchUpInside)
         let leftBarButton = UIBarButtonItem(customView: leftButton)
         self.navigationItem.leftBarButtonItem = leftBarButton
-    }
-    
-    // Right Bar Button Item
-    private func rightBarButtonItem() {
-        
-        let rightButton = UIButton(type: .custom)
-        rightButton.setImage(UIImage(named: "favorite")?.withRenderingMode(.alwaysTemplate), for: UIControlState())
-        rightButton.tintColor = UIColor.red
-        rightButton.frame = CGRect(x: 0, y: 0, width: 20, height: 20)
-        rightButton.addTarget(self, action: #selector(self.rightButtonTapped), for: .touchUpInside)
-        let rightBarButton = UIBarButtonItem(customView: rightButton)
-        self.navigationItem.rightBarButtonItem = rightBarButton
     }
 }
 
@@ -111,6 +113,8 @@ extension ProductDetailVC: UIPickerViewDelegate, UIPickerViewDataSource {
 extension ProductDetailVC: ZHDropDownMenuDelegate {
     func dropDownMenu(_ menu: ZHDropDownMenu!, didChoose index: Int) {
         print("\(menu) choosed at index \(index)")
+        let totalCost = (index + 1) * product!.newCost
+        productDetailView.costLabel.text = "$\(totalCost)"
     }
     
     func dropDownMenu(_ menu: ZHDropDownMenu!, didInput text: String!) {

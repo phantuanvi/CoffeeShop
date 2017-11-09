@@ -16,14 +16,13 @@ class ProductDetailView: UIView {
     let productImageView: UIImageView = {
         let imgView = UIImageView()
         imgView.contentMode = .scaleAspectFit
-        imgView.image = UIImage(named: "chocolateMuffin")
         return imgView
     }()
     
     let descriptionTextView: UITextView = {
         let textView = UITextView()
-        textView.text = "Our muffin unites rich, dense chocolate with a gooey caramel center for bliss in every bite. As far as we're concerned, there's no such thing as too much caramel."
         textView.textColor = UIColor.lightGray
+        textView.textAlignment = .center
         textView.isEditable = false
         return textView
     }()
@@ -74,7 +73,6 @@ class ProductDetailView: UIView {
         label.font = UIFont(name: "OpenSans", size: 20)
         label.textColor = MYGREEN
         label.textAlignment = .center
-        label.text = "$20"
         return label
     }()
     
