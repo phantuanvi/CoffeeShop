@@ -15,4 +15,5 @@ struct Product {
     let oldCost: Int?
     let urlPicture: String?
     var isFavorite: Bool = false
+    var quantity: Int
 }

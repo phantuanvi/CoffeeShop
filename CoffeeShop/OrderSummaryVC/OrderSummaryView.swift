@@ -27,7 +27,6 @@ class OrderSummaryView: UIView {
     let productImageView: UIImageView = {
         let imgView = UIImageView()
         imgView.contentMode = .scaleAspectFit
-        imgView.image = UIImage(named: "chickenSalad")
         return imgView
     }()
     
@@ -36,7 +35,6 @@ class OrderSummaryView: UIView {
         label.font = UIFont(name: "OpenSans-Semibold", size: 22)
         label.textColor = .darkGray
         label.textAlignment = .left
-        label.text = "Chicken Salad"
         return label
     }()
     
@@ -73,7 +71,6 @@ class OrderSummaryView: UIView {
         label.font = UIFont(name: "OpenSans", size: 20)
         label.textColor = MYGREEN
         label.textAlignment = .center
-        label.text = "$13.20"
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -146,7 +143,7 @@ class OrderSummaryView: UIView {
             10,
             |-15-nameProductLabel-10-| ~ 25,
             5,
-            |-10-tableView-10-| ~ 251,
+            |-10-tableView-10-| ~ 151,
             5,
             |-0-totalView-0-| ~ 55,
             10,

@@ -55,6 +55,7 @@ class ProductDetailVC: UIViewController {
     private func placeOrderTapped() {
         print("placeOrderTapped")
         let orderSummaryVC = OrderSummaryVC()
+        orderSummaryVC.product = self.product
         navigationController?.pushViewController(orderSummaryVC, animated: true)
     }
     
@@ -113,7 +114,8 @@ extension ProductDetailVC: UIPickerViewDelegate, UIPickerViewDataSource {
 extension ProductDetailVC: ZHDropDownMenuDelegate {
     func dropDownMenu(_ menu: ZHDropDownMenu!, didChoose index: Int) {
         print("\(menu) choosed at index \(index)")
-        let totalCost = (index + 1) * product!.newCost
+        product?.quantity = index + 1
+        let totalCost = product!.quantity * product!.newCost
         productDetailView.costLabel.text = "$\(totalCost)"
     }
     

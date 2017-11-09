@@ -7,11 +7,14 @@
 //
 
 import UIKit
+import Kingfisher
+
 class OrderSummaryVC: UIViewController {
     
     // MARK: create variables
     let orderSummaryView = OrderSummaryView()
-    
+    var product: Product? = nil
+    var totalCost: Double = 0
     //MARK: Lifecycle
     
     override func loadView() {
@@ -25,8 +28,12 @@ class OrderSummaryVC: UIViewController {
         
         navigationItem.title = "Order Summary"
         
+        totalCost = Double(product!.newCost * product!.quantity)
         orderSummaryView.tableView.tableFooterView = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: 1))
-        
+        let resource: ImageResource = ImageResource(downloadURL: URL(string: self.product!.urlPicture!)!)
+        orderSummaryView.productImageView.kf.setImage(with: resource)
+        orderSummaryView.nameProductLabel.text = product!.name
+        orderSummaryView.totalCostLabel.text = "\(totalCost + (totalCost * 0.05))"
         orderSummaryView.tableView.dataSource = self
         orderSummaryView.tableView.delegate = self
         orderSummaryView.confirmOrderButton.tap(confirmOrderTapped)
@@ -42,7 +49,12 @@ class OrderSummaryVC: UIViewController {
     
     // MARK: create functions
     private func confirmOrderTapped() {
-        print("confirmOrderTapped")
+        let alertController = UIAlertController(title: "Order Confirm", message: "You order \(product!.quantity) \(product!.name)", preferredStyle: UIAlertControllerStyle.alert)
+        let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default) { (action) in
+            self.navigationController?.popToRootViewController(animated: true)
+        }
+        alertController.addAction(okAction)
+        present(alertController, animated: true, completion: nil)
     }
     
     private func cancelOrderTapped() {
@@ -73,7 +85,7 @@ extension OrderSummaryVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return 3
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -81,11 +93,9 @@ extension OrderSummaryVC: UITableViewDelegate, UITableViewDataSource {
         
         if let cell = cell {
             switch indexPath.row {
-            case 0: cell.titleLabel.text = "Base Price";    cell.detailLabel.text = "$12.00";
-            case 1: cell.titleLabel.text = "Quantity";      cell.detailLabel.text = "1";
-            case 2: cell.titleLabel.text = "Size";          cell.detailLabel.text = "Large";
-            case 3: cell.titleLabel.text = "Tax";           cell.detailLabel.text = "$1.20";
-            case 4: cell.titleLabel.text = "Subtotal";      cell.detailLabel.text = "$13.20";
+            case 0: cell.titleLabel.text = "Base Price";    cell.detailLabel.text = "$\(product!.newCost)";
+            case 1: cell.titleLabel.text = "Quantity";      cell.detailLabel.text = "\(product!.quantity)";
+            case 2: cell.titleLabel.text = "Tax";           cell.detailLabel.text = "$\(totalCost * 0.05)";
             default: cell.titleLabel.text = ""
             }
             

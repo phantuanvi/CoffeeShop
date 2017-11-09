@@ -94,7 +94,7 @@ class MenuDetailVC: UIViewController {
                 guard let description = product["detail"] else { return products }
                 guard let cost = product["cost"] else { return products }
                 guard let urlPicture = product["urlPicture"] else { return products }
-                let p = Product(name: name, description: description, newCost: Int(cost) ?? 0, oldCost: nil, urlPicture: urlPicture, isFavorite: false)
+                let p = Product(name: name, description: description, newCost: Int(cost) ?? 0, oldCost: nil, urlPicture: urlPicture, isFavorite: false, quantity: 1)
                 if (menu == titleNav) {
                     products.append(p)
                 }
