@@ -7,11 +7,13 @@
 //
 
 import UIKit
+import Kingfisher
 
 class FavoritesVC: UIViewController {
     
     // MARK: create variables
     var titleNav: String = "Favorites"
+    var productsArray = [Product]()
     
     let favoritesView = FavoritesView()
     
@@ -24,7 +26,6 @@ class FavoritesVC: UIViewController {
         
         navigationItem.title = titleNav
         self.setNavigationBarItem()
-        print("favorites viewcontroller")
         
         favoritesView.collectionView.delegate = self
         favoritesView.collectionView.dataSource = self
@@ -32,6 +33,7 @@ class FavoritesVC: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         setStatusBarColor(UIBarStyle.blackTranslucent)
+        productsArray = PTVDataService.sharedInstance.favoriteProducts
     }
 }
 
@@ -41,17 +43,24 @@ extension FavoritesVC: UICollectionViewDelegateFlowLayout, UICollectionViewDataS
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 6
+        return productsArray.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FavoriteCollectionViewCell", for: indexPath) as! FavoriteCollectionViewCell
+        cell.titleLabel.text = productsArray[indexPath.row].name
+        cell.detailLabel.text = productsArray[indexPath.row].description
+        
+        let resource: ImageResource = ImageResource(downloadURL: URL(string: productsArray[indexPath.row].urlPicture!)!)
+        cell.productImageView.kf.setImage(with: resource)
+        cell.costLabel.text = "$\(productsArray[indexPath.row].newCost)"
+        
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let width = (self.view.frame.size.width/2)-5 //some width
-        let height = width * 1.7 //ratio
+        let height = width * 1.5 //ratio
         return CGSize(width: width, height: height);
     }
     
