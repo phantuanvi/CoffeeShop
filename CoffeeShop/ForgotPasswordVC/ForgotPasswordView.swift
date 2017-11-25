@@ -12,6 +12,14 @@ import Stevia
 class ForgotPasswordView: UIView {
 
     // MARK: create views
+    let logoView: UIImageView = {
+        let imgView = UIImageView()
+        imgView.image = UIImage(named: "logo")?.withRenderingMode(.alwaysTemplate)
+        imgView.tintColor = UIColor.lightGray
+        imgView.translatesAutoresizingMaskIntoConstraints = false
+        return imgView
+    }()
+    
     let emailTextField: UITextField = {
         let textField = UITextField()
         textField.placeholder = "Email"
@@ -56,15 +64,19 @@ class ForgotPasswordView: UIView {
     
     private func render() {
         sv(
+            logoView,
             emailTextField,
             resetButton,
             cancelButton
         )
         
         equalSizes(resetButton, cancelButton)
+        logoView.width(100).centerHorizontally()
         
         layout(
-            100,
+            70,
+            logoView ~ 100,
+            50,
             |-25-emailTextField-25-| ~ 50,
             10,
             |-25-resetButton-25-cancelButton-25-| ~ 50
