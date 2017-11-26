@@ -138,9 +138,6 @@ playground.xcworkspace
 
 ## Various settings
 
-## Other
-**/GoogleService-Info.plist
-
 ### Xcode Patch ###
 *.xcodeproj/*
 !*.xcodeproj/project.pbxproj
