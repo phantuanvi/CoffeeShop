@@ -1,6 +1,14 @@
 # CoffeeShop
 
-Description: This is the simple shop app. You can search for menu of Coffee, Breakfast,... Choose the item, quantity and order it. The app has 12 screens and use firebase as backend server.
+Description: 
+
+- This is the simple shop app. You can search for menu of Coffee, Breakfast,... Choose the item, quantity and order it.
+- The app has 12 screens and use firebase as backend server.
+- I get the design file [in here](https://www.sketchappsources.com/free-source/1378-ecommerce-ui-kit-sketch-freebie-resource.html).
+
+
+
+<br>
 <br>
 
 <p float="left">
