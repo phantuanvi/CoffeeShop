@@ -1,4 +1,4 @@
-# CoffeeShop
+# CoffeeShop [![Build Status](https://travis-ci.org/phantuanvi/CoffeeShop.svg?branch=master)](https://travis-ci.org/phantuanvi/CoffeeShop)
 
 Description: 
 
