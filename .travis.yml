@@ -1,0 +1,5 @@
+language: swift
+osx_image: xcode9.0
+xcode_workspace: CoffeeShop.xcworkspace
+xcode_scheme: CoffeeShop
+xcode_sdk: iphonesimulator10
