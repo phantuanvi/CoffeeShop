@@ -112,14 +112,15 @@ extension ProductDetailVC: UIPickerViewDelegate, UIPickerViewDataSource {
 }
 
 extension ProductDetailVC: ZHDropDownMenuDelegate {
-    func dropDownMenu(_ menu: ZHDropDownMenu!, didChoose index: Int) {
+    func dropDownMenu(_ menu: ZHDropDownMenu, didEdit text: String) {
+        print("\(menu) input text \(text)")
+    }
+    
+    
+    func dropDownMenu(_ menu: ZHDropDownMenu, didSelect index: Int) {
         print("\(menu) choosed at index \(index)")
         product?.quantity = index + 1
         let totalCost = product!.quantity * product!.newCost
         productDetailView.costLabel.text = "$\(totalCost)"
-    }
-    
-    func dropDownMenu(_ menu: ZHDropDownMenu!, didInput text: String!) {
-        print("\(menu) input text \(text)")
     }
 }
