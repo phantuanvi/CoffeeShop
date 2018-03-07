@@ -101,16 +101,6 @@ class SignUpView: UIView {
         return button
     }()
     
-    let forgotButton: UIButton = {
-        let button = UIButton()
-        button.setTitle("Forgot Password", for: UIControlState.normal)
-        button.titleLabel?.font = UIFont(name: "OpenSans", size: 16)
-        button.setTitleColor(.gray, for: UIControlState.normal)
-        button.backgroundColor = UIColor.clear
-        button.isUserInteractionEnabled = true
-        return button
-    }()
-    
     // MARK: - life cycles
     convenience init() {
         self.init(frame: CGRect.zero)
@@ -130,8 +120,7 @@ class SignUpView: UIView {
                     passwordTextField,
                     confirmPasswordTextField,
                     signUpButton,
-                    cancelButton,
-                    forgotButton
+                    cancelButton
                 )
             )
         )
@@ -142,8 +131,6 @@ class SignUpView: UIView {
         equalWidths(scrollView, contentView)
         
         avatarView.width(100).centerHorizontally()
-        
-        equalWidths(cancelButton, forgotButton)
         
         layout(
             70,
@@ -157,7 +144,7 @@ class SignUpView: UIView {
             30,
             |-20-signUpButton-20-| ~ 50,
             10,
-            |-20-cancelButton-10-forgotButton-20-| ~ 50
+            |-20-cancelButton-20-| ~ 50
         )
         
     }

@@ -9,7 +9,7 @@
 import UIKit
 import Firebase
 
-class SignUpVC: UIViewController {
+class SignUpViewController: UIViewController {
     
     // MARK: - create variables
     let signUpView = SignUpView()
@@ -29,7 +29,6 @@ class SignUpVC: UIViewController {
         
         signUpView.avatarView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleSelectAvatarImageView)))
         signUpView.cancelButton.tap(cancelButtonTapped)
-        signUpView.forgotButton.tap(forgotPasswordTapped)
         signUpView.signUpButton.tap(signUpTapped)
         
         self.hideKeyboard()
@@ -120,7 +119,7 @@ class SignUpVC: UIViewController {
 }
 
 
-extension SignUpVC: UITextFieldDelegate {
+extension SignUpViewController: UITextFieldDelegate {
     func textFieldDidBeginEditing(_ textField: UITextField) {
         let scrollPoint = CGPoint(x: 0, y: textField.frame.origin.y-130)
         signUpView.scrollView.setContentOffset(scrollPoint, animated: true)
@@ -146,7 +145,7 @@ extension SignUpVC: UITextFieldDelegate {
 }
 
 // dismiss keyboard when touch outside textField
-extension SignUpVC {
+extension SignUpViewController {
     func hideKeyboard() {
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         view.addGestureRecognizer(tap)
@@ -157,7 +156,7 @@ extension SignUpVC {
     }
 }
 
-extension SignUpVC: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+extension SignUpViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         dismiss(animated: true, completion: nil)
     }

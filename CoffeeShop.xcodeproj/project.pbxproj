@@ -23,14 +23,14 @@
 		0C78AABF1FA4DA7E00940B11 /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C78AABE1FA4DA7E00940B11 /* WelcomeView.swift */; };
 		0C78AAC01FA4DA7E00940B11 /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C78AABE1FA4DA7E00940B11 /* WelcomeView.swift */; };
 		0C78AAC11FA4DA7E00940B11 /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C78AABE1FA4DA7E00940B11 /* WelcomeView.swift */; };
-		0C78AAC31FA4DAA100940B11 /* WelcomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C78AAC21FA4DAA100940B11 /* WelcomeVC.swift */; };
-		0C78AAC41FA4DAA100940B11 /* WelcomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C78AAC21FA4DAA100940B11 /* WelcomeVC.swift */; };
-		0C78AAC51FA4DAA100940B11 /* WelcomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C78AAC21FA4DAA100940B11 /* WelcomeVC.swift */; };
+		0C78AAC31FA4DAA100940B11 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C78AAC21FA4DAA100940B11 /* WelcomeViewController.swift */; };
+		0C78AAC41FA4DAA100940B11 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C78AAC21FA4DAA100940B11 /* WelcomeViewController.swift */; };
+		0C78AAC51FA4DAA100940B11 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C78AAC21FA4DAA100940B11 /* WelcomeViewController.swift */; };
 		0C78AAC81FA4DAF700940B11 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C78AAC61FA4DAF600940B11 /* Constants.swift */; };
 		0C78AAC91FA4DAF700940B11 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C78AAC71FA4DAF600940B11 /* Extensions.swift */; };
 		0C78AACE1FA4E91F00940B11 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C78AACD1FA4E91F00940B11 /* SignUpView.swift */; };
-		0C78AAD01FA4E94900940B11 /* SignUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C78AACF1FA4E94900940B11 /* SignUpVC.swift */; };
-		0C78AAD31FA4EB8E00940B11 /* SignInVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C78AAD21FA4EB8E00940B11 /* SignInVC.swift */; };
+		0C78AAD01FA4E94900940B11 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C78AACF1FA4E94900940B11 /* SignUpViewController.swift */; };
+		0C78AAD31FA4EB8E00940B11 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C78AAD21FA4EB8E00940B11 /* SignInViewController.swift */; };
 		0C78AAD51FA4EBA700940B11 /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C78AAD41FA4EBA700940B11 /* SignInView.swift */; };
 		0C78AAD71FA4EEFB00940B11 /* SlideMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C78AAD61FA4EEFB00940B11 /* SlideMenuController.swift */; };
 		0C78AADA1FA4EFAC00940B11 /* SideBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C78AAD91FA4EFAC00940B11 /* SideBarView.swift */; };
@@ -54,6 +54,8 @@
 		0CB87CA51FAABAC4008A24C2 /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB87CA41FAABAC4008A24C2 /* Product.swift */; };
 		0CB87CA71FAABB8C008A24C2 /* OrderProduct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB87CA61FAABB8C008A24C2 /* OrderProduct.swift */; };
 		0CB87CA91FAABE08008A24C2 /* UserRole.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB87CA81FAABE08008A24C2 /* UserRole.swift */; };
+		0CE18957204FD6180079D09F /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CE18956204FD6180079D09F /* Coordinator.swift */; };
+		0CE18959204FD65B0079D09F /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CE18958204FD65B0079D09F /* AppCoordinator.swift */; };
 		0CE85E761FAAD50800FDE973 /* Menu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CE85E751FAAD50800FDE973 /* Menu.swift */; };
 		0CE85E7A1FAB417400FDE973 /* PTVDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CE85E791FAB417400FDE973 /* PTVDataService.swift */; };
 		13F511ABC424CA1045041081 /* Pods_CoffeeShop.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15294FB2A44F7A7FC1BCCFAD /* Pods_CoffeeShop.framework */; };
@@ -95,12 +97,12 @@
 		0C78AA9B1FA4D46400940B11 /* CoffeeShopTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CoffeeShopTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0C78AAA61FA4D46500940B11 /* CoffeeShopUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CoffeeShopUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0C78AABE1FA4DA7E00940B11 /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
-		0C78AAC21FA4DAA100940B11 /* WelcomeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeVC.swift; sourceTree = "<group>"; };
+		0C78AAC21FA4DAA100940B11 /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
 		0C78AAC61FA4DAF600940B11 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		0C78AAC71FA4DAF600940B11 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		0C78AACD1FA4E91F00940B11 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
-		0C78AACF1FA4E94900940B11 /* SignUpVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpVC.swift; sourceTree = "<group>"; };
-		0C78AAD21FA4EB8E00940B11 /* SignInVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInVC.swift; sourceTree = "<group>"; };
+		0C78AACF1FA4E94900940B11 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		0C78AAD21FA4EB8E00940B11 /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		0C78AAD41FA4EBA700940B11 /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
 		0C78AAD61FA4EEFB00940B11 /* SlideMenuController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideMenuController.swift; sourceTree = "<group>"; };
 		0C78AAD91FA4EFAC00940B11 /* SideBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideBarView.swift; sourceTree = "<group>"; };
@@ -124,6 +126,8 @@
 		0CB87CA41FAABAC4008A24C2 /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
 		0CB87CA61FAABB8C008A24C2 /* OrderProduct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderProduct.swift; sourceTree = "<group>"; };
 		0CB87CA81FAABE08008A24C2 /* UserRole.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRole.swift; sourceTree = "<group>"; };
+		0CE18956204FD6180079D09F /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
+		0CE18958204FD65B0079D09F /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		0CE85E751FAAD50800FDE973 /* Menu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Menu.swift; sourceTree = "<group>"; };
 		0CE85E791FAB417400FDE973 /* PTVDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PTVDataService.swift; sourceTree = "<group>"; };
 		15294FB2A44F7A7FC1BCCFAD /* Pods_CoffeeShop.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CoffeeShop.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -224,6 +228,7 @@
 				0C78AAB81FA4D9CB00940B11 /* Support */,
 				0C78AABD1FA4DA5400940B11 /* Welcome */,
 				0C78AA8A1FA4D46400940B11 /* AppDelegate.swift */,
+				0CE18955204FD5F30079D09F /* Coordinators */,
 			);
 			path = CoffeeShop;
 			sourceTree = "<group>";
@@ -249,7 +254,7 @@
 		0C78AABD1FA4DA5400940B11 /* Welcome */ = {
 			isa = PBXGroup;
 			children = (
-				0C78AAC21FA4DAA100940B11 /* WelcomeVC.swift */,
+				0C78AAC21FA4DAA100940B11 /* WelcomeViewController.swift */,
 				0C78AABE1FA4DA7E00940B11 /* WelcomeView.swift */,
 			);
 			path = Welcome;
@@ -258,7 +263,7 @@
 		0C78AACC1FA4E8F200940B11 /* SignUp */ = {
 			isa = PBXGroup;
 			children = (
-				0C78AACF1FA4E94900940B11 /* SignUpVC.swift */,
+				0C78AACF1FA4E94900940B11 /* SignUpViewController.swift */,
 				0C78AACD1FA4E91F00940B11 /* SignUpView.swift */,
 			);
 			path = SignUp;
@@ -267,7 +272,7 @@
 		0C78AAD11FA4EB6E00940B11 /* SignIn */ = {
 			isa = PBXGroup;
 			children = (
-				0C78AAD21FA4EB8E00940B11 /* SignInVC.swift */,
+				0C78AAD21FA4EB8E00940B11 /* SignInViewController.swift */,
 				0C78AAD41FA4EBA700940B11 /* SignInView.swift */,
 			);
 			path = SignIn;
@@ -350,6 +355,15 @@
 				0CE85E751FAAD50800FDE973 /* Menu.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		0CE18955204FD5F30079D09F /* Coordinators */ = {
+			isa = PBXGroup;
+			children = (
+				0CE18956204FD6180079D09F /* Coordinator.swift */,
+				0CE18958204FD65B0079D09F /* AppCoordinator.swift */,
+			);
+			path = Coordinators;
 			sourceTree = "<group>";
 		};
 		45B0668585D808EACB47E321 /* Pods */ = {
@@ -595,15 +609,17 @@
 			files = (
 				0C78AAD51FA4EBA700940B11 /* SignInView.swift in Sources */,
 				0C4B376A1FA8787C0067A299 /* PTVAuthService.swift in Sources */,
-				0C78AAD01FA4E94900940B11 /* SignUpVC.swift in Sources */,
+				0CE18957204FD6180079D09F /* Coordinator.swift in Sources */,
+				0C78AAD01FA4E94900940B11 /* SignUpViewController.swift in Sources */,
 				0C78AAC91FA4DAF700940B11 /* Extensions.swift in Sources */,
-				0C78AAD31FA4EB8E00940B11 /* SignInVC.swift in Sources */,
+				0C78AAD31FA4EB8E00940B11 /* SignInViewController.swift in Sources */,
 				0CB87CA51FAABAC4008A24C2 /* Product.swift in Sources */,
 				0CB87CA91FAABE08008A24C2 /* UserRole.swift in Sources */,
 				0C78AAF01FA4FB2A00940B11 /* FavoriteCollectionViewCell.swift in Sources */,
-				0C78AAC31FA4DAA100940B11 /* WelcomeVC.swift in Sources */,
+				0C78AAC31FA4DAA100940B11 /* WelcomeViewController.swift in Sources */,
 				0C78AADC1FA4EFC400940B11 /* SideBarVC.swift in Sources */,
 				0C78AADF1FA4F0A200940B11 /* MenuVC.swift in Sources */,
+				0CE18959204FD65B0079D09F /* AppCoordinator.swift in Sources */,
 				0C78AAE11FA4F0B600940B11 /* MenuView.swift in Sources */,
 				0C56E1851FA63980001ED8B4 /* ForgotPasswordView.swift in Sources */,
 				0C4B376F1FA8BC060067A299 /* SideBarTableFooterView.swift in Sources */,
@@ -638,7 +654,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0C78AAC41FA4DAA100940B11 /* WelcomeVC.swift in Sources */,
+				0C78AAC41FA4DAA100940B11 /* WelcomeViewController.swift in Sources */,
 				0C78AAC01FA4DA7E00940B11 /* WelcomeView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -647,7 +663,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0C78AAC51FA4DAA100940B11 /* WelcomeVC.swift in Sources */,
+				0C78AAC51FA4DAA100940B11 /* WelcomeViewController.swift in Sources */,
 				0C78AAC11FA4DA7E00940B11 /* WelcomeView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -17,7 +17,7 @@ enum LogInType {
     case google
 }
 
-class SignInVC: UIViewController, GIDSignInUIDelegate {
+class SignInViewController: UIViewController, GIDSignInUIDelegate {
     
     // MARK: create variables
     let signInView = SignInView()
@@ -57,7 +57,7 @@ class SignInVC: UIViewController, GIDSignInUIDelegate {
     }
     
     private func signUpTapped() {
-        let signUpVC = SignUpVC()
+        let signUpVC = SignUpViewController()
         present(signUpVC, animated: true, completion: nil)
     }
     
@@ -107,7 +107,7 @@ class SignInVC: UIViewController, GIDSignInUIDelegate {
     }
 }
 
-extension SignInVC: UITextFieldDelegate {
+extension SignInViewController: UITextFieldDelegate {
     
     // TextField move up when keyboard is present
     func animateTextField(textField: UITextField, up: Bool) {
@@ -147,7 +147,7 @@ extension SignInVC: UITextFieldDelegate {
 }
 
 // dismiss keyboard when touch outside textField
-extension SignInVC {
+extension SignInViewController {
     func hideKeyboard() {
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         view.addGestureRecognizer(tap)
@@ -158,7 +158,7 @@ extension SignInVC {
     }
 }
 
-extension SignInVC: GIDSignInDelegate {
+extension SignInViewController: GIDSignInDelegate {
     func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
         if let error = error {
             print(error.localizedDescription)

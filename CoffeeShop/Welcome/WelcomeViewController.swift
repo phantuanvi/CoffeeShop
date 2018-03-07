@@ -9,9 +9,15 @@
 import UIKit
 import Firebase
 
-class WelcomeVC: UIViewController {
+protocol WelcomeViewControllerDelegate: class {
+    func welcomViewControllerDidSelectSignUp(fromVC: UIViewController)
+    func welcomViewControllerDidSelectSkip(fromVC: UIViewController)
+}
+
+class WelcomeViewController: UIViewController {
     
     // MARK: create variables
+    weak var delegate: WelcomeViewControllerDelegate?
     let welcomeView = WelcomeView()
     
     // MARK: Lifecycle
@@ -34,13 +40,11 @@ class WelcomeVC: UIViewController {
     // MARK: create functions
     private func signUpTapped(){
         print("signUpTapped")
-        let signUpVC = SignUpVC()
-        present(signUpVC, animated: true, completion: nil)
+        delegate?.welcomViewControllerDidSelectSignUp(fromVC: self)
     }
     
     private func skipTapped() {
         print("skipTapped")
-        let signInVC = SignInVC()
-        present(signInVC, animated: true, completion: nil)
+        delegate?.welcomViewControllerDidSelectSkip(fromVC: self)
     }
 }

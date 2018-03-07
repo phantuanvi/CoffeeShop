@@ -148,7 +148,7 @@ extension SideBarVC: UITableViewDelegate, UITableViewDataSource {
         print("logInTapped")
         isMenuBlue = true
         self.sideBarView.tableView.reloadData()
-        let signInVC = SignInVC()
+        let signInVC = SignInViewController()
         present(signInVC, animated: true, completion: nil)
     }
     
@@ -156,8 +156,7 @@ extension SideBarVC: UITableViewDelegate, UITableViewDataSource {
         print("registerTapped")
         isMenuBlue = true
         self.sideBarView.tableView.reloadData()
-        let signUpVC = SignUpVC()
-        let navController = UINavigationController(rootViewController: signUpVC)
-        present(navController, animated: true, completion: nil)
+        let signUpVC = SignUpViewController()
+        present(signUpVC, animated: true, completion: nil)
     }
 }

@@ -66,7 +66,7 @@ class SignInView: UIView {
     let signUpButton: UIButton = {
         let button = UIButton()
         button.setTitle("Sign Up", for: UIControlState.normal)
-        button.titleLabel?.font = UIFont(name: "OpenSans-Semibold", size: 15)
+        button.titleLabel?.font = UIFont(name: "OpenSans-Semibold", size: 17)
         button.setTitleColor(MYGREEN, for: UIControlState.normal)
         button.isUserInteractionEnabled = true
         return button
@@ -74,8 +74,8 @@ class SignInView: UIView {
     
     let forgotButton: UIButton = {
         let button = UIButton()
-        button.setTitle("Forgot Password", for: UIControlState.normal)
-        button.titleLabel?.font = UIFont(name: "OpenSans", size: 16)
+        button.setTitle("Forgot Password?", for: UIControlState.normal)
+        button.titleLabel?.font = UIFont(name: "OpenSans", size: 12)
         button.setTitleColor(.gray, for: UIControlState.normal)
         button.backgroundColor = UIColor.clear
         button.isUserInteractionEnabled = true
